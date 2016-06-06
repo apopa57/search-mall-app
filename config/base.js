@@ -21,20 +21,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    alias: {
-      'images': 'app/assets/images'
-    }
+    alias: defaultConfig.aliasPaths
   },
-  plugins: [
-    new NpmInstallPlugin({
-      save: true
-    }),
-    new HtmlWebpackPlugin({
-      template: 'node_modules/html-webpack-template/index.ejs',
-      title: 'React Idangerous Swiper',
-      appMountId: 'app',
-      inject: false
-    })
-  ],
   module: {}
 };

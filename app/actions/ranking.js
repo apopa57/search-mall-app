@@ -1,7 +1,7 @@
 import { RANKING_REQUEST, RANKING_SUCCESS, RANKING_FAILURE } from 'constants/actionTypes'
 import { API_KEY, ROOT_URL } from 'constants/base'
 import { normalize, arrayOf } from 'normalizr'
-import { ItemSchema } from 'constants/schemas'
+import { RankingSchema } from 'constants/schemas'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
 
@@ -35,7 +35,7 @@ const fetchRanking = (url) => {
       .then(json => {
         const camelizedJson = camelizeKeys(json)
         const items = camelizedJson.items.map( item => item.item );
-        const normalized = normalize(items, arrayOf(ItemSchema))
+        const normalized = normalize(items, arrayOf(RankingSchema))
 
         dispatch(rankingSuccess(normalized.entities, normalized.result))
       })

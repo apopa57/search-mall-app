@@ -29,3 +29,13 @@ export const getPaginatedUrls = (link, type) => {
   const paginatedLink = link.split(',').find(s => s.indexOf(type) > -1);
   return paginatedLink ? paginatedLink.split(';')[0].trim().slice(1, -1) : null;
 }
+
+export const buildPaginationUrls = (response) => {
+  const link = response.headers.get('link');
+  return {
+    firstUrl: getPaginatedUrls(link, 'rel="first"'),
+    lastUrl: getPaginatedUrls(link, 'rel="last"'),
+    prevUrl: getPaginatedUrls(link, 'rel="prev"'),
+    nextUrl: getPaginatedUrls(link, 'rel="next"')
+  };
+}

@@ -7,6 +7,8 @@ import { createSelector } from 'reselect';
 
 const selectSearch = () => state => state.search;
 
+const selectItems = () => state => state.entities.items;
+
 const selectSearchTerm = () => createSelector(
   selectSearch(),
   (searchState) => searchState.searchTerm
@@ -22,9 +24,10 @@ const selectSearchLoading = () => createSelector(
   (searchState) => searchState.loading
 );
 
-const selectSearchIds = () => createSelector(
+const selectSearchData = () => createSelector(
   selectSearch(),
-  (searchState) => searchState.ids
+  selectItems(),
+  (searchState, items) => searchState.ids.map(id => items[id])
 );
 
 const selectSearchError = () => createSelector(
@@ -34,7 +37,7 @@ const selectSearchError = () => createSelector(
 
 export {
   selectSearch,
-  selectSearchIds,
+  selectSearchData,
   selectSearchTerm,
   selectSearchError,
   selectSearchLoading,

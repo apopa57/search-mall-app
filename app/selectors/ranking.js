@@ -5,20 +5,8 @@
 
 import { createSelector } from 'reselect'
 
-const selectRanking = () => state => state.ranking
-
-const selectRankingIds = () => createSelector(
-  selectRanking(),
-  (rankingState) => rankingState.ids
-)
-
-const selectRankingError = () => createSelector(
-  selectRanking(),
-  (rankingState) => rankingState.error
-)
+const selectRanking = () => state => state.entities.ranking
 
 export {
-  selectRanking,
-  selectRankingIds,
-  selectRankingError
+  selectRanking
 };

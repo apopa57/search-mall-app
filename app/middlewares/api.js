@@ -1,18 +1,8 @@
 import { normalize, Schema, arrayOf } from 'normalizr';
 import { camelizeKeys } from 'humps';
 import { ROOT_URL, CALL_API } from 'constants/base';
-import { getPaginatedUrls } from 'utils/common';
+import { buildPaginationUrls } from 'utils/common';
 import 'isomorphic-fetch';
-
-const buildPaginationUrls = (response) => {
-  const link = response.headers.get('link');
-  return {
-    firstUrl: getPaginatedUrls(link, 'rel="first"'),
-    lastUrl: getPaginatedUrls(link, 'rel="last"'),
-    prevUrl: getPaginatedUrls(link, 'rel="prev"'),
-    nextUrl: getPaginatedUrls(link, 'rel="next"')
-  };
-}
 
 const callApi = (endpoint, schema) => {
   const reqUrl = (endpoint.indexOf(ROOT_URL) === -1) ? `${ROOT_URL}${endpoint}` : endpoint;
@@ -23,13 +13,6 @@ const callApi = (endpoint, schema) => {
       if (!response.ok) return Promise.reject(json);
       const paginationUrls = buildPaginationUrls(response);
       const camelizedJson = camelizeKeys(json);
-
-      const item = new Schema('items')
-
-      const test = normalize(json , { Items: arrayOf(item) });
-
-      debugger;
-
       return Object.assign({}, normalize(camelizedJson, schema), { ...paginationUrls });
     });
 }

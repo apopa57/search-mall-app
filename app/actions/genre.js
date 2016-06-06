@@ -4,6 +4,8 @@ import { normalize, arrayOf } from 'normalizr'
 import { GenreSchema } from 'constants/schemas'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
+import isEmpty from 'lodash/isEmpty'
+import localStorage from 'utils/localStorage'
 
 const genresRequest = () => {
   return {
@@ -26,6 +28,12 @@ const genresFailure = (error) => {
   }
 }
 
+const shouldFetchGenre = (state) => {
+  const { genres } = state.entities;
+  if(!isEmpty(genres)) return false;
+  return true;
+}
+
 const fetchGenres = (url) => {
   return (dispatch, getState) => {
     dispatch(genresRequest())
@@ -34,6 +42,7 @@ const fetchGenres = (url) => {
       .then(json => {
         const genres =camelizeKeys(json).children.map((genre) =>  genre.child)
         const normalized = normalize(genres, arrayOf(GenreSchema))
+        localStorage.set('genres', normalized.entities);
         dispatch(genresSuccess(normalized.entities, normalized.result))
       })
       .catch(err => dispatch(genresFailure(err)));
@@ -44,7 +53,9 @@ export const fetchGenresIfNeeded = () => {
   const url = `${ROOT_URL}IchibaGenre/Search/20140222?format=json&genreId=0&applicationId=${API_KEY}`
 
   return (dispatch, getState) => {
-    dispatch(fetchGenres(url))
+    if(shouldFetchGenre(getState())) {
+      dispatch(fetchGenres(url))
+    }
   }
 }
 

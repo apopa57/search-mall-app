@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import route from 'reducers/route'
 
-const rootReducer = combineReducers({
-  state: ( state = {} ) => state
-});
-
-export default rootReducer;
+export default function createReducer(asyncReducers) {
+  return combineReducers({
+    route,
+    ...asyncReducers
+  });
+}

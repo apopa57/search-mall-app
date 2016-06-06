@@ -15,7 +15,7 @@ let PATHS = {
  */
 
 let aliasPaths = {
-  'libs': path.join(PATHS.app, 'libs'),
+  'utils': path.join(PATHS.app, 'utils'),
   'styles': path.join(PATHS.app, 'assets', 'styles'),
   'config': path.join(PATHS.app, 'config'),
   'actions': path.join(PATHS.app, 'actions'),
@@ -23,7 +23,9 @@ let aliasPaths = {
   'stores': path.join(PATHS.app, 'stores'),
   'constants': path.join(PATHS.app, 'constants'),
   'reducers': path.join(PATHS.app, 'reducers'),
-  'containers': path.join(PATHS.app, 'containers')
+  'containers': path.join(PATHS.app, 'containers'),
+  'middlewares': path.join(PATHS.app, 'middlewares'),
+  'selectors': path.join(PATHS.app, 'selectors')
 };
 
 let defaultModules = {

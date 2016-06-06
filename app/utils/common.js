@@ -12,10 +12,10 @@ export const paramsToQueryString = (params) => {
     return;
   }
   const k = Object.keys(params);
-  let s = "";
+  let s = '';
   for(let i=0; i<k.length; i++) {
     s += `${k[i]}=${encodeURIComponent(params[k[i]])}`;
-    if (i != k.length -1) s += "&";
+    if (i != k.length -1) s += '&';
   }
   return s;
 };

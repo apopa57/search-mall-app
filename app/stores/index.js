@@ -3,7 +3,6 @@ import createLogger from 'redux-logger';
 import rootReducer from 'reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import api from 'middlewares/api'
 
 // Check if current env is dev or prod
 const isDev = process.env.NODE_ENV !== 'production';
@@ -13,8 +12,7 @@ const devtools = window.devToolsExtension || (() => noop => noop);
 export default (initialState, history) => {
   const middlewares = [
     thunk,
-    routerMiddleware(history),
-    api
+    routerMiddleware(history)
   ];
 
   if(isDev) middlewares.push(createLogger());

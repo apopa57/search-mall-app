@@ -1,4 +1,4 @@
-export const ROOT_URL = 'https:api.rakuten.co.jp'
+export const ROOT_URL = 'https://app.rakuten.co.jp/services/api/'
 export const CALL_API = Symbol('Call API')
 export const PER_PAGE = 10
 export const API_KEY = '1026955344517130264'

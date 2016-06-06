@@ -22,9 +22,15 @@ const callApi = (endpoint, schema) => {
     .then(({ json, response }) => {
       if (!response.ok) return Promise.reject(json);
       const paginationUrls = buildPaginationUrls(response);
-      json = camelizeKeys(json);
+      const camelizedJson = camelizeKeys(json);
 
-      return Object.assign({}, normalize(json, schema), { ...paginationUrls });
+      const item = new Schema('items')
+
+      const test = normalize(json , { Items: arrayOf(item) });
+
+      debugger;
+
+      return Object.assign({}, normalize(camelizedJson, schema), { ...paginationUrls });
     });
 }
 

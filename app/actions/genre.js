@@ -48,8 +48,8 @@ const fetchGenres = (url) => {
   }
 }
 
-export const fetchGenresIfNeeded = () => {
-  const url = `${ROOT_URL}IchibaGenre/Search/20140222?format=json&genreId=0&applicationId=${API_KEY}`
+export const fetchGenresIfNeeded = (genreId) => {
+  const url = `${ROOT_URL}IchibaGenre/Search/20140222?format=json&genreId=${genreId}&applicationId=${API_KEY}`
 
   return (dispatch, getState) => {
     if(shouldFetchGenre(getState())) {

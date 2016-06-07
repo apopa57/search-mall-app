@@ -12,10 +12,10 @@ export default class Header extends BaseComponent {
       <header>
         <div className="container">
           <div className="row">
-            <div className="columns twelve">
+            <div className="columns two">
               <h1>Rakuten Search App</h1>
             </div>
-            <div className="columns twelve">
+            <div className="columns ten">
               <SearchBar />
             </div>
           </div>

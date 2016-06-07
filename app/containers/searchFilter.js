@@ -10,7 +10,7 @@ class SearchFilter extends BaseComponent {
 
   render() {
     return (
-      <div className="columns three search-page__filter">
+      <div className="columns two search-page__filter">
         <div className="search-page__filter__title">
           <span>Search filter</span>
           <div className="search-page__filter__content">

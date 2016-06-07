@@ -2,6 +2,7 @@ import React from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
+import Loader from 'components/common/loader'
 
 import {
   selectSearchData,
@@ -15,7 +16,7 @@ class SearchResult extends BaseComponent {
 
   render() {
     return(
-      <div className="columns nine search-page__results">
+      <div className="columns ten search-page__results">
         <div className="columns twelve search-page__results__menubar">
           <div className="search-page__results__title">
             <span>Search results</span>
@@ -24,6 +25,9 @@ class SearchResult extends BaseComponent {
             <span className="box-icon active"></span>
             <span className="list-icon"></span>
           </div>
+        </div>
+        <div className="columns twelve search-page__results__lists">
+          <Loader/>
         </div>
       </div>
     )

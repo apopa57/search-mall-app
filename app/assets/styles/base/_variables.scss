@@ -29,11 +29,12 @@ $font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sa
 
 //Grid Variables
 $container-width: 1900px !default;
-$container-width-larger-than-mobile: 95% !default;
-$container-width-larger-than-phablet: 95% !default;
+$container-width-larger-than-mobile: 98% !default;
+$container-width-larger-than-phablet: 98% !default;
 $total-columns: 12 !default;
 $column-width: 100 / $total-columns !default; // calculates individual column width based off of # of columns
-$column-margin: 2% !default; // space between columns
+$column-margin: 1% !default; // space between columns
+$box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
 
 // Misc
 $global-radius: 4px !default;

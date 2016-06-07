@@ -7,7 +7,7 @@ export default class App extends BaseComponent {
     return (
       <div className="app-body">
         <Header />
-        <div classNmae="container">
+        <div className="container">
           {this.props.children}
         </div>
       </div>

@@ -1,5 +1,10 @@
 @import 'skeleton';
 @import 'vendor/animated';
+@import 'modules/header';
+
+body {
+  background: $light-grey;
+}
 
 body, html {
   -webkit-font-smoothing: antialiased;

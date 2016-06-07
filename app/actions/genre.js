@@ -34,7 +34,7 @@ const shouldFetchGenre = (state) => {
 }
 
 const fetchGenres = (url) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(genresRequest())
     return fetch(url)
       .then(response => response.json())

@@ -4,3 +4,4 @@ public/*
 .env
 *.log
 npm-debug.log*
+.DS_Store

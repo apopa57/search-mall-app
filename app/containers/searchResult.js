@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'

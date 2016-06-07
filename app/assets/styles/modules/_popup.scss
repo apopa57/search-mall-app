@@ -1,0 +1,27 @@
+.popup {
+  background: $white;
+  border: 1px solid $dark-grey;
+  border-radius: $global-radius;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 100%;
+  z-index: 10;
+  @media (#{$bp-larger-than-mobile}) {
+    width: 75%;
+  }
+  @media (#{$bp-larger-than-tablet}) {
+  width: 50%;
+  }
+  &:before {
+    @include trianglePointer(5, $dark-grey, -7px, 12px, undefined, undefined, false);
+    z-index: 11;
+  }
+  &:after {
+    @include trianglePointer(5, white, -6px, 12px, undefined, undefined, false);
+    z-index: 12;
+  }
+  & > div {
+    margin: .5em;
+  }
+}

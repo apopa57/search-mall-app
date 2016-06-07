@@ -2,7 +2,9 @@
 @import 'vendor/loader';
 @import 'vendor/font-awesome-extend';
 @import 'vendor/font-awesome-mixin';
+@import 'base/mixins';
 @import 'modules/header';
+@import 'modules/popup';
 
 
 body, html {

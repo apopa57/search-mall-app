@@ -1,0 +1,36 @@
+@mixin trianglePointer($size, $color, $top, $right, $bottom, $left, $largeSize) {
+	$regularSize: $size;
+	$onePxBigger: ($size+1);
+	$twoPxBigger: ($size+2);
+	$border-width: $size+px;
+	$extra-width: $onePxBigger+px;
+	$extra-extra-width: $twoPxBigger+px;
+	border-left: solid transparent $border-width;
+	border-right: solid transparent $extra-width;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+
+  @if $largeSize == false {
+		border-bottom: solid $color $extra-width;
+	} @else {
+		border-bottom: solid $color $extra-extra-width;
+  }
+
+	@if $top != undefined {
+		top: $top;
+  }
+
+	@if $left != undefined {
+		left: $left
+  }
+
+	@if $right != undefined {
+		right: $right;
+  }
+
+	@if $bottom != undefined {
+		bottom: $bottom;
+  }
+}

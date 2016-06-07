@@ -1,6 +1,6 @@
 import React from 'react'
 import BaseComponent from 'utils/baseComponent'
-import Header from 'components/header'
+import Header from 'components/header/'
 
 export default class App extends BaseComponent {
   render() {

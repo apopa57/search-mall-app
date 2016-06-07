@@ -1,0 +1,7 @@
+.item {
+  & > div {
+    background-color: white;
+    box-shadow: 0 2px 5px $box-shadow-color;
+    margin: 10px;
+  }
+}

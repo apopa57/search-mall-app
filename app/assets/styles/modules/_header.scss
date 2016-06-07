@@ -1,0 +1,31 @@
+$logo-size: 25px;
+
+header {
+  background-color: $dark-grey;
+  margin-bottom: 2em;
+  padding: .75em 0;
+  h1 {
+    color: white;
+    font-size: 1.025em;
+    font-weight: 200;
+    letter-spacing: 2px;
+    height: $logo-size;
+    line-height: $logo-size;
+    margin: 0;
+    padding: 0 0 0 ($logo-size * 1.5);
+    text-transform: uppercase;
+    &:before {
+      background-color: $primary-color;
+      border-radius: 50%;
+      content: 'R';
+      color: white;
+      font-weight: bold;
+      height: $logo-size;
+      left: 0;
+      line-height: $logo-size;
+      position: absolute;
+      text-align: center;
+      width: $logo-size;
+    }
+  }
+}

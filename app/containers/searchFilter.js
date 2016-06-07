@@ -10,11 +10,11 @@ class SearchFilter extends BaseComponent {
 
   render() {
     return (
-      <div className="columns two search-page__filter">
+      <div className="columns three search-page__filter">
         <div className="search-page__filter__title">
-          <h4>検索条件</h4>
+          <span>Search filter</span>
           <div className="search-page__filter__content">
-
+            This is filter area
           </div>
         </div>
       </div>

@@ -14,8 +14,11 @@ class SearchResult extends BaseComponent {
   }
 
   render() {
-    console.log(this.props.data);
-    return <div>This is search result</div>
+    return(
+      <div className="columns ten search-page__results">
+        This is search result
+      </div>
+    )
   }
 }
 

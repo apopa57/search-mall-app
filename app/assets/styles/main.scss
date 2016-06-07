@@ -1,7 +1,57 @@
 @import 'skeleton';
 @import 'vendor/animated';
 
-.fadeIn {
-  text-align: center;
-  @include animated(fadeInUpBig, 1s, 1s)
+body, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $white;
+  width: 100%;
+  height: auto;
+
+  a {
+    text-decoration: none !important;
+  }
+
+  button {
+    position: relative;
+  }
+
+  select {
+    /*for firefox*/
+    -moz-appearance: none !important;
+    /*for chrome*/
+    -webkit-appearance: none !important;
+    position: relative;
+  }
+
+  ul {
+    margin: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.home-page {
+
+}
+
+.search-page {
+  padding: 2em 0;
+  .search-page__filter {
+    .search-page__filter__title {
+      h4 {
+        color: #fff;
+        background: $main-color;
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 0;
+        padding: .5em 1em;
+      }
+    }
+  }
+
+  .search-page__results {
+    padding: 1em;
+  }
 }

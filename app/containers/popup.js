@@ -9,9 +9,13 @@ class Popup extends BaseComponent {
   }
 
   render() {
+    if (!this.props.open) return null
+
     return (
       <div className="popup">
-        {this.props.children}
+        <div>
+          {this.props.children}
+        </div>
       </div>
     )
   }
@@ -21,7 +25,7 @@ const mapStateToProps = (state) => {
   const { popup } = state;
 
   return {
-    popup: popup
+    open: popup.open
   }
 }
 

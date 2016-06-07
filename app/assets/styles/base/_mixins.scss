@@ -1,4 +1,4 @@
-@mixin trianglePointer($size, $color, $top, $left, $right, $bottom, $largeSize) {
+@mixin trianglePointer($size, $color, $top, $right, $bottom, $left, $largeSize) {
 	$regularSize: $size;
 	$onePxBigger: ($size+1);
 	$twoPxBigger: ($size+2);

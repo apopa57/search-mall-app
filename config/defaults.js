@@ -37,23 +37,39 @@ let defaultModules = {
   loaders: [
     {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: 'style-loader!css-loader!postcss-loader'
     },
     {
       test: /\.less/,
-      loader: 'style-loader!css-loader!less-loader'
+      loader: 'style-loader!css-loader!less-loader!postcss-loader'
     },
     {
       test: /\.styl/,
-      loader: 'style-loader!css-loader!stylus-loader'
+      loader: 'style-loader!css-loader!stylus-loader!postcss-loader'
     },
     {
-      test: /\.(png|jpg|gif|woff|woff2)$/,
+      test: /\.(png|jpg|gif)$/,
       loader: 'url-loader?limit=8192'
     },
     {
       test: /\.(mp4|ogg|svg)$/,
       loader: 'file-loader'
+    },
+    {
+      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/font-woff"
+    }, {
+      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/font-woff"
+    }, {
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=application/octet-stream"
+    }, {
+      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "file"
+    }, {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000&mimetype=image/svg+xml"
     }
   ]
 };

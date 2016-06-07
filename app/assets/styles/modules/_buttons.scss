@@ -81,20 +81,14 @@ input {
 }
 
 .button.button-primary,
-button.button-primary {
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
   color: #fff;
   background-color: $primary-color;
   border-color: $primary-color;
-}
-
-input {
-  &[type="submit"].button-primary,
-  &[type="reset"].button-primary,
-  &[type="button"].button-primary {
-    color: #fff;
-    background-color: $primary-color;
-    border-color: $primary-color;
-  }
+  transition: all .4s ease;
 }
 
 .button.button-primary:hover,
@@ -107,9 +101,8 @@ input[type="button"].button-primary:hover,
 input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
-  color: #fff;
-  background-color: darken($primary-color, 15%);
-  border-color: darken($primary-color, 15%);
+  background-color: darken($primary-color, 5%);
+  border-color: darken($primary-color, 10%);
 }
 
 

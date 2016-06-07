@@ -1,7 +1,7 @@
 import * as types from 'constants/actionTypes';
 
 const initialState = {
-  searchTerm: '',
+  params: {},
   loading: false,
   error: false,
   isValidated: true,
@@ -9,12 +9,12 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  const { type, error, isValidated, searchTerm } = action;
+  const { type, error, isValidated, params } = action;
 
   switch (type) {
-    case types.CHECK_SEARCH_INPUT:
+    case types.SEARCH_PARAMS_CHANGE:
       return Object.assign({}, state, {
-        searchTerm
+        params
       })
 
     case types.CHECK_VALIDATION:

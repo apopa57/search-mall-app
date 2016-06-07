@@ -16,8 +16,7 @@ const genresRequest = () => {
 const genresSuccess = (entities, result) => {
   return {
     type: GENRE_SUCCESS,
-    entities,
-    result
+    entities
   }
 }
 
@@ -43,7 +42,7 @@ const fetchGenres = (url) => {
         const genres =camelizeKeys(json).children.map((genre) =>  genre.child)
         const normalized = normalize(genres, arrayOf(GenreSchema))
         localStorage.set('genres', normalized.entities);
-        dispatch(genresSuccess(normalized.entities, normalized.result))
+        dispatch(genresSuccess(normalized.entities))
       })
       .catch(err => dispatch(genresFailure(err)));
   }

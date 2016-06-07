@@ -14,7 +14,7 @@ export default {
     if (isLocalStorageAvailable) {
       let value = localStorage.getItem(key)
 
-      if (!value) return
+      if (!value) return null
 
       if (value[0] === "{") {
         value = JSON.parse(value)

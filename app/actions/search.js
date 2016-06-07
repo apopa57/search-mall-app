@@ -12,11 +12,12 @@ const itemsRequest = () => {
   }
 }
 
-const itemsSuccess = (entities, result) => {
+const itemsSuccess = (entities, result, count) => {
   return {
     type: types.ITEMS_SUCCESS,
     entities,
-    result
+    result,
+    count
   }
 }
 
@@ -33,11 +34,11 @@ const searchItems = (url) => {
     return fetch(url)
       .then(response => response.json())
       .then(json => {
-        const camelizedJson = camelizeKeys(json)
-        const items = camelizedJson.items.map( item => item.item );
+        json = camelizeKeys(json)
+        const items = json.items.map( item => item.item );
         const normalized = normalize(items, arrayOf(ItemSchema))
 
-        dispatch(itemsSuccess(normalized.entities, normalized.result))
+        dispatch(itemsSuccess(normalized.entities, normalized.result, json.count))
       })
       .catch(err => dispatch(itemsFailure(err)));
   }
@@ -57,9 +58,9 @@ export const checkValidation = (isValidated) => {
   }
 }
 
-export const onSearchTermChange = (searchTerm) => {
+export const onSearchParamsChange = (params) => {
   return {
     type: types.CHANGE_SEARCH_INPUT,
-    searchTerm
+    params
   }
 }

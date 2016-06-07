@@ -1,7 +1,6 @@
 $logo-size: 25px;
 
 header {
-  background-color: $dark-grey;
   margin-bottom: 2em;
   padding: .75em 0;
   h1 {
@@ -14,7 +13,7 @@ header {
     margin: 0 0 1em;
     padding: 0 0 0 ($logo-size * 1.5);
     position: relative;
-    text-transform: uppercase;
+    text-indent: -500px;
     &:before {
       background-color: $primary-color;
       border-radius: 50%;
@@ -26,6 +25,7 @@ header {
       line-height: $logo-size;
       position: absolute;
       text-align: center;
+      text-indent: 0;
       width: $logo-size;
     }
   }

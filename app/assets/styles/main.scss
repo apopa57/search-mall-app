@@ -44,25 +44,36 @@ body, html {
 
 }
 
+// Search Form
+
 form {
   div {
     position: relative;
   }
-  input[type=search] {
+  input[type=search],
+  input[type=search]:focus {
+    border: 3px solid $primary-color;
     text-indent: $search-button-size;
   }
   button {
+    background-color: transparent;
+    border: 0;
+    color: $dark-grey;
+    font-size: 1.25em;
+    margin: 0;
     padding: 0 .5em;
     position: absolute;
     width: $search-button-size;
-    &.button-primary {
+    &:first-of-type {
+      color: $primary-color;
       left: 0;
     }
-    &.button-secondary {
+    &:last-of-type {
       right: 0;
     }
   }
 }
+
 
 .search-page {
   padding: 2em .5em;
@@ -127,10 +138,20 @@ form {
   }
 }
 
+// Icons
+
 .list-icon {
-  @include fa-icon(th-list) ;
+  @include fa-icon(th-list);
 }
 
 .box-icon {
-  @include fa-icon(th-large) ;
+  @include fa-icon(th-large);
+}
+
+.search-icon {
+  @include fa-icon(search);
+}
+
+.settings-icon {
+  @include fa-icon(cog);
 }

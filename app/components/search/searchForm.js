@@ -34,14 +34,12 @@ export default class Header extends BaseComponent {
             type="search"
             value={this.state.query} />
           <button
-            className="button-primary"
             onClick={this.handleSubmit}>
-            S
+            <i className="search-icon" />
           </button>
           <button
-            className="button-secondary"
             onClick={this.handleSubmit}>
-            X
+            <i className="settings-icon" />
           </button>
         </div>
       </form>

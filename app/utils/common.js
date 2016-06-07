@@ -12,10 +12,10 @@ export const paramsToQueryString = (params) => {
     return;
   }
   const k = Object.keys(params);
-  let s = "";
+  let s = '';
   for(let i=0; i<k.length; i++) {
     s += `${k[i]}=${encodeURIComponent(params[k[i]])}`;
-    if (i != k.length -1) s += "&";
+    if (i != k.length -1) s += '&';
   }
   return s;
 };
@@ -28,4 +28,14 @@ export const getPaginatedUrls = (link, type) => {
   }
   const paginatedLink = link.split(',').find(s => s.indexOf(type) > -1);
   return paginatedLink ? paginatedLink.split(';')[0].trim().slice(1, -1) : null;
+}
+
+export const buildPaginationUrls = (response) => {
+  const link = response.headers.get('link');
+  return {
+    firstUrl: getPaginatedUrls(link, 'rel="first"'),
+    lastUrl: getPaginatedUrls(link, 'rel="last"'),
+    prevUrl: getPaginatedUrls(link, 'rel="prev"'),
+    nextUrl: getPaginatedUrls(link, 'rel="next"')
+  };
 }

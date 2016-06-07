@@ -11,7 +11,7 @@ header {
     letter-spacing: 2px;
     height: $logo-size;
     line-height: $logo-size;
-    margin: 0;
+    margin: 0 0 1em;
     padding: 0 0 0 ($logo-size * 1.5);
     text-transform: uppercase;
     &:before {

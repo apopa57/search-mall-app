@@ -98,37 +98,22 @@ input {
 }
 
 .button.button-primary:hover,
-button.button-primary:hover {
-  color: #fff;
-  background-color: $link-color;
-  border-color: $link-color;
-}
-
-input {
-  &[type="submit"].button-primary:hover,
-  &[type="reset"].button-primary:hover,
-  &[type="button"].button-primary:hover {
-    color: #fff;
-    background-color: $link-color;
-    border-color: $link-color;
-  }
-}
-
+button.button-primary:hover,
 .button.button-primary:focus,
-button.button-primary:focus {
+button.button-primary:focus
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
   color: #fff;
-  background-color: $link-color;
-  border-color: $link-color;
+  background-color: darken($primary-color, 15%);
+  border-color: darken($primary-color, 15%);
 }
 
+
 input {
-  &[type="submit"].button-primary:focus,
-  &[type="reset"].button-primary:focus,
-  &[type="button"].button-primary:focus {
-    color: #fff;
-    background-color: $link-color;
-    border-color: $link-color;
-  }
   &[type="email"],
   &[type="number"],
   &[type="search"],

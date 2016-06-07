@@ -5,7 +5,7 @@ import * as searchActions from 'actions/search'
 import * as genreActions from 'actions/genre'
 import * as rankingActions from 'actions/ranking'
 import { API_KEY } from 'constants/base'
-import Header from 'components/header'
+import SearchForm from 'components/search/searchForm'
 
 class SearchBar extends BaseComponent {
   constructor(props) {
@@ -26,7 +26,7 @@ class SearchBar extends BaseComponent {
   }
 
   render() {
-    return <Header />
+    return <SearchForm />
   }
 }
 

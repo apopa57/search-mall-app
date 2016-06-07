@@ -1,11 +1,15 @@
 import React from 'react'
 import BaseComponent from 'utils/baseComponent'
+import Header from 'components/header'
 
 export default class App extends BaseComponent {
   render() {
     return (
       <div className="app-body">
-        {this.props.children}
+        <Header />
+        <div classNmae="container">
+          {this.props.children}
+        </div>
       </div>
     )
   }

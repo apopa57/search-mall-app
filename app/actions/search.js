@@ -12,12 +12,13 @@ const itemsRequest = () => {
   }
 }
 
-const itemsSuccess = (entities, result, count) => {
+const itemsSuccess = (entities, result, count, pageCount) => {
   return {
     type: types.ITEMS_SUCCESS,
     entities,
     result,
-    count
+    count,
+    pageCount
   }
 }
 
@@ -38,7 +39,7 @@ const searchItems = (url) => {
         const items = json.items.map( item => item.item );
         const normalized = normalize(items, arrayOf(ItemSchema))
 
-        dispatch(itemsSuccess(normalized.entities, normalized.result, json.count))
+        dispatch(itemsSuccess(normalized.entities, normalized.result, json.count, json.pageCount))
       })
       .catch(err => dispatch(itemsFailure(err)));
   }

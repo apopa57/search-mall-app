@@ -10,6 +10,7 @@ body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $white;
+  min-width: 320px;
   width: 100%;
   height: auto;
 
@@ -39,6 +40,26 @@ body, html {
 
 .home-page {
 
+}
+
+form {
+  div {
+    position: relative;
+  }
+  input[type=search] {
+    text-indent: $search-button-size;
+  }
+  button {
+    padding: 0 .5em;
+    position: absolute;
+    width: $search-button-size;
+    &.button-primary {
+      left: 0;
+    }
+    &.button-secondary {
+      right: 0;
+    }
+  }
 }
 
 .search-page {

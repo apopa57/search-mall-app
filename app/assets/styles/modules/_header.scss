@@ -13,6 +13,7 @@ header {
     line-height: $logo-size;
     margin: 0 0 1em;
     padding: 0 0 0 ($logo-size * 1.5);
+    position: relative;
     text-transform: uppercase;
     &:before {
       background-color: $primary-color;

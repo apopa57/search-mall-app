@@ -3,8 +3,9 @@ $logo-size: 38px;
 header {
   margin-bottom: 1%;
   background: $white;
-  padding: 1em 0;
-  box-shadow: $box-shadow;
+  padding: 1.5em 0;
+  border-bottom: 1px solid $border-color;
+  // box-shadow: $box-shadow;
   h1 {
     background: url('../images/logo.png') no-repeat;
     background-size: auto 100%;

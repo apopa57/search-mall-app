@@ -10,7 +10,7 @@
 body, html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $background-color;
+  background-color: $white;
   min-width: 320px;
   width: 100%;
   height: auto;
@@ -51,9 +51,10 @@ form {
   }
   input[type=search],
   input[type=search]:focus {
-    border: 2px solid $primary-color;
+    border: 1px solid $border-color;
     text-indent: $search-button-size;
     margin-bottom: 0;
+    padding-left: 40px;
   }
   button {
     background-color: transparent;
@@ -68,6 +69,8 @@ form {
       background: $primary-color;
       color: $white;
       left: 0;
+      width: 60px;
+      border-radius: 4px 0 0 4px;
     }
     &:last-of-type {
       right: 0;
@@ -78,8 +81,9 @@ form {
 
 .search-page {
   .search-page__filter {
-    box-shadow: $box-shadow;
-    padding: 1em;
+    // box-shadow: $box-shadow;
+    border-right: 1px solid $border-color;
+    padding: 1% 1% 0 0;
     background: $white;
     display: none;
     @media (#{$bp-larger-than-desktop}) {
@@ -115,8 +119,8 @@ form {
 
   .search-page__results {
     background-color: $white;
-    padding: 1em;
-    box-shadow: $box-shadow;
+    padding: 1% 0;
+    // box-shadow: $box-shadow;
     width: 100%;
     margin-left: 0;
 

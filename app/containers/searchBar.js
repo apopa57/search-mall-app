@@ -21,15 +21,7 @@ class SearchBar extends BaseComponent {
 
   componentWillMount() {
     const { searchItemsIfNeed, fetchGenresIfNeeded, fetchRankingIfNeeded } = this.props
-    const params = {
-      keyword: 'iphone',
-      format: 'json',
-      applicationId: API_KEY
-    }
 
-    searchItemsIfNeed(params)
-    fetchGenresIfNeeded()
-    fetchRankingIfNeeded()
   }
 
   handleChange(event) {

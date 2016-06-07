@@ -81,6 +81,16 @@ form {
     box-shadow: $box-shadow;
     padding: 1em;
     background: $white;
+    display: none;
+    @media (#{$bp-larger-than-desktop}) {
+      display: block;
+      width: grid-column-width(3);
+    }
+
+    @media (#{$bp-larger-than-1700}) {
+      width: grid-column-width(2);
+    }
+
     .search-page__filter__title {
       span {
         text-transform: uppercase;
@@ -98,7 +108,6 @@ form {
     .search-page__filter__content {
       background: $white;
       box-sizing: border-box;
-      padding: .5em;
       min-height: 40em;
     }
   }
@@ -107,6 +116,20 @@ form {
     background-color: $white;
     padding: 1em;
     box-shadow: $box-shadow;
+    width: 100%;
+    margin-left: 0;
+
+    @media (#{$bp-larger-than-desktop}) {
+      display: block;
+      width: grid-column-width(9);
+      margin-left: $column-margin;
+    }
+
+    @media (#{$bp-larger-than-1700}) {
+      width: grid-column-width(10);
+      margin-left: $column-margin;
+    }
+
     .search-page__results__menubar {
       height: $height-40;
       line-height: $height-40;

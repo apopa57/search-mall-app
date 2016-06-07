@@ -1,7 +1,27 @@
-import * as types from 'constants/actionTypes';
+import * as types from 'constants/actionTypes'
+import { API_KEY } from 'constants/base'
 
 const initialState = {
-  params: {},
+  params: {
+    applicationId: API_KEY,
+    format: 'json',
+    keyword: '',  //Search value
+    availability: 0, //Only available product
+    genreId: 0, //Genre id
+    page: 1, //Pagination
+    hasReviewFlag: 0, //Products have review only
+    shipOverseasFlag: 0, //Products can ship oversea
+    asurakuFlag: 0, //Asaraku product
+    minPrice: '', //Min price
+    maxPrice: '', //Max price
+    sort: '',
+    creditCardFlag: 0, //Products can pay only with credit
+    pamphletFlag: 0, //Products have pamphlet only
+    hasMovieFlag: 0, //Products have movie obly
+    appointDeliveryDate: 0, //Products can be set deliver day only
+    imageFlag: 0, //Products have image only
+    postageFlag: 0 //Freeshipping only
+  },
   loading: false,
   error: false,
   isValidated: true,

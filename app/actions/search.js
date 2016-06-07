@@ -61,7 +61,7 @@ export const checkValidation = (isValidated) => {
 
 export const onSearchParamsChange = (params) => {
   return {
-    type: types.CHANGE_SEARCH_INPUT,
+    type: types.SEARCH_PARAMS_CHANGE,
     params
   }
 }

@@ -9,9 +9,9 @@ const selectSearch = () => state => state.search;
 
 const selectItems = () => state => state.entities.items;
 
-const selectSearchTerm = () => createSelector(
+const selectSearchParams = () => createSelector(
   selectSearch(),
-  (searchState) => searchState.searchTerm
+  (searchState) => searchState.params
 );
 
 const selectSearchValidation = () => createSelector(
@@ -38,7 +38,7 @@ const selectSearchError = () => createSelector(
 export {
   selectSearch,
   selectSearchData,
-  selectSearchTerm,
+  selectSearchParams,
   selectSearchError,
   selectSearchLoading,
   selectSearchValidation

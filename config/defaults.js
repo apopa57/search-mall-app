@@ -17,6 +17,7 @@ let PATHS = {
 let aliasPaths = {
   'utils': path.join(PATHS.app, 'utils'),
   'styles': path.join(PATHS.app, 'assets', 'styles'),
+  'images': path.join(PATHS.app, 'assets', 'images'),
   'config': path.join(PATHS.app, 'config'),
   'actions': path.join(PATHS.app, 'actions'),
   'components': path.join(PATHS.app, 'components'),

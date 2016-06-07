@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { onSearchParamsChange } from 'actions/search'
-import { createSelector } from 'reselect';
+import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
-import FilterBox from 'components/common/searchFilter'
+import { selectSearchParams } from 'selectors/search'
+import SelectBox from 'components/common/selectBox'
 
 class SearchFilter extends BaseComponent {
   constructor(props) {
@@ -13,12 +14,13 @@ class SearchFilter extends BaseComponent {
 
   render() {
     return (
-      <div className="columns two search-page__filter">
-        <div className="search-page__filter__title">
-          <span>Advanced Search</span>
-          <div className="search-page__filter__content">
-            <FilterBox />
-          </div>
+      <div className="filter-box">
+        <div className="filter-box__content">
+          <span className="filter-box__label">Genres</span>
+          <SelectBox {...this.props}/>
+        </div>
+        <div className="filter-box__content">
+          <span className="filter-box__label">Price range</span>
         </div>
       </div>
     )
@@ -27,5 +29,6 @@ class SearchFilter extends BaseComponent {
 
 export default connect(createSelector(
   selectGenres(),
-  (genres) => ({ genres })
+  selectSearchParams(),
+  (genres, searchParams) => ({ genres, searchParams })
 ), { onSearchParamsChange })(SearchFilter)

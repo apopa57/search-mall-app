@@ -6,7 +6,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { selectLocationState } from 'selectors/route';
 import createStore from 'stores';
 import routes from './routes';
-import 'react-select/dist/react-select.css';
 
 const store = createStore({}, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store, {

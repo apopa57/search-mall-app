@@ -15,8 +15,16 @@ class SearchResult extends BaseComponent {
 
   render() {
     return(
-      <div className="columns ten search-page__results">
-        This is search result
+      <div className="columns nine search-page__results">
+        <div className="columns twelve search-page__results__menubar">
+          <div className="search-page__results__title">
+            <span>Search results</span>
+          </div>
+          <div className=" search-page__results__gridicon">
+            <span className="box-icon active"></span>
+            <span className="list-icon"></span>
+          </div>
+        </div>
       </div>
     )
   }

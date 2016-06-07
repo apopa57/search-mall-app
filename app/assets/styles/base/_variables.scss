@@ -22,20 +22,25 @@ $white: #fff;
 $dark: #262626;
 $background-color: #EFEFEF;
 $btn-color: #555555;
+$light-brown: #bdbdbd;
 
 // Typography
 $font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 //Grid Variables
 $container-width: 1900px !default;
-$container-width-larger-than-mobile: 100% !default;
-$container-width-larger-than-phablet: 100% !default;
+$container-width-larger-than-mobile: 95% !default;
+$container-width-larger-than-phablet: 95% !default;
 $total-columns: 12 !default;
 $column-width: 100 / $total-columns !default; // calculates individual column width based off of # of columns
-$column-margin: 4% !default; // space between columns
+$column-margin: 2% !default; // space between columns
 
 // Misc
 $global-radius: 4px !default;
+$height-10: 10px;
+$height-20: 20px;
+$height-30: 30px;
 $height-40: 40px;
+$height-50: 50px;
 $height-60: 60px;
 $height-100: 100px;

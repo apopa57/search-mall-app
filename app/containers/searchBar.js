@@ -2,7 +2,7 @@ import React from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { togglePopup } from 'actions/popup'
-import { onSearchParamsChange } from 'actions/search'
+import { onSearchParamsChange, searchItemsIfNeed } from 'actions/search'
 import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
@@ -23,13 +23,14 @@ class SearchBar extends BaseComponent {
 
   handleSubmit(event) {
     event.preventDefault()
+
+    const { searchItemsIfNeed, searchParams } = this.props
+    searchItemsIfNeed(searchParams)
   }
 
   render() {
-    console.log(this.props);
     const { searchParams, togglePopup } = this.props
 
-    console.log('keyword', searchParams.keyword)
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="columns twelve">
@@ -55,4 +56,4 @@ export default connect(createSelector(
   selectGenres(),
   selectSearchParams(),
   (genres, searchParams) => ({ genres, searchParams })
-), { onSearchParamsChange, togglePopup })(SearchBar)
+), { onSearchParamsChange, searchItemsIfNeed, togglePopup })(SearchBar)

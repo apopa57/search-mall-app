@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { togglePopup } from 'actions/popup'
 import { onSearchParamsChange, searchItemsIfNeed } from 'actions/search'
 import { createSelector } from 'reselect'
-import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
 import InputField from 'components/common/inputField'
 import bindAll from 'lodash/bindAll'
@@ -53,7 +52,6 @@ class SearchBar extends BaseComponent {
 }
 
 export default connect(createSelector(
-  selectGenres(),
   selectSearchParams(),
-  (genres, searchParams) => ({ genres, searchParams })
+  (searchParams) => ({ searchParams })
 ), { onSearchParamsChange, searchItemsIfNeed, togglePopup })(SearchBar)

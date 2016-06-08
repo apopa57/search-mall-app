@@ -32,6 +32,7 @@ class Popup extends BaseComponent {
   }
 
   toggle(event) {
+    event.preventDefault()
     const componentNode = ReactDOM.findDOMNode(this)
 
     // Toggle visibility when clicked outside of the component

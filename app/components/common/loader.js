@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default () => {
+export default (props) => {
+  if (props.hide) return null
+
   return (
     <div className="loading-icon"></div>
   )

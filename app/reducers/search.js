@@ -1,5 +1,6 @@
 import * as types from 'constants/actionTypes'
 import { API_KEY } from 'constants/base'
+import merge from 'lodash/merge'
 
 const initialState = {
   params: {
@@ -33,29 +34,29 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case types.SEARCH_PARAMS_CHANGE:
-      return Object.assign({}, state, {
+      return merge({}, state, {
         params
       })
 
     case types.CHECK_VALIDATION:
-      return Object.assign({}, state, {
+      return merge({}, state, {
         isValidated
       })
 
     case types.ITEMS_REQUEST:
-      return Object.assign({}, state, {
+      return merge({}, state, {
         loading: true
       })
 
     case types.ITEMS_SUCCESS:
       const { result } = action
-      return Object.assign({}, state, {
+      return merge({}, state, {
         loading: false,
         ids: result
       })
 
     case types.ITEMS_FAILURE:
-      return Object.assign({}, state, {
+      return merge({}, state, {
         loading: false,
         error
       })

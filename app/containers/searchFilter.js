@@ -12,7 +12,7 @@ import bindAll from 'lodash/bindAll'
 class SearchFilter extends BaseComponent {
   constructor(props) {
     super(props)
-    bindAll(this, 'updateParams', '_onSelectGenresChange', '_onMinPriceChange')
+    bindAll(this, '_onSelectGenresChange', '_onMinPriceChange', '_onMaxPriceChange')
   }
 
   updateParams(value, type) {
@@ -27,6 +27,10 @@ class SearchFilter extends BaseComponent {
 
   _onMinPriceChange(e) {
     this.updateParams(e.target.value, 'minPrice')
+  }
+
+  _onMaxPriceChange(e) {
+    this.updateParams(e.target.value, 'maxPrice')
   }
 
   render() {
@@ -53,10 +57,13 @@ class SearchFilter extends BaseComponent {
             <div className="columns two connect-icon">~</div>
             <InputField
               className="columns five"
-              value={searchParams.minPrice}
+              value={searchParams.maxPrice}
               placeholder={'Max price'}
-              onChange={this._onMinPriceChange}/>
+              onChange={this._onMaxPriceChange}/>
           </div>
+        </div>
+        <div className="filter-box__content">
+          <span className="filter-box__label">Price range</span>
         </div>
       </div>
     )

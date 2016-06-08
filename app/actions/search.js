@@ -29,6 +29,13 @@ const itemsFailure = (error) => {
   }
 }
 
+const shouldSearchItem = (state) => {
+  const { loading, isValidated } = state.search;
+
+  if(loading) return false;
+  return isValidated;
+}
+
 const searchItems = (url) => {
   return (dispatch, getState) => {
     dispatch(itemsRequest())
@@ -48,7 +55,9 @@ const searchItems = (url) => {
 export const searchItemsIfNeed = (params) => {
   return (dispatch, getState) => {
     const url = `${ROOT_URL}IchibaItem/Search/20140222?${paramsToQueryString(params)}`
-    dispatch(searchItems(url))
+    if(shouldSearchItem(getState())) {
+      dispatch(searchItems(url))
+    }
   }
 }
 

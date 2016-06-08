@@ -171,26 +171,6 @@ form {
     .search-page__results__lists {
       min-height: 40em;
     }
-
-    .filter-box__inputfield {
-      input {
-        height: 34px;
-        margin-bottom: 0;
-        bottom: 0;
-        color: #aaa;
-        left: 0;
-        line-height: 34px;
-        padding-left: 10px;
-        padding-right: 10px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
   }
 }
 
@@ -207,6 +187,22 @@ form {
   }
   .Select {
     margin-top: 1em;
+  }
+  .filter-box__inputfield {
+    margin-top: .5em;
+    input {
+      height: $input-height;
+      margin-bottom: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .connect-icon {
+    text-align: center;
+    height: $input-height;
+    line-height: $input-height;
+    font-size: 2em;
   }
 }
 
@@ -233,12 +229,13 @@ form {
 .loading-icon {
   align-items: center;
   background: $primary-color;
-  border: $loader-border-width solid #fff;
+  border: $loader-border-width solid $white;
   display: flex;
   height: $loader-size;
   justify-content: center;
   left: 50%;
   margin: 1em 0 0 -($loader-size/2);
+  margin-top: 20%;
   position: relative;
   width: $loader-size;
   &:before {
@@ -253,7 +250,7 @@ form {
     border-radius: 50%;
   }
   &:after {
-    animation: pulse 1.5s infinite ease-out;
+    animation: pulse 1.1s infinite ease-out;
     content: '';
     height: $loader-size;
     left: 0;
@@ -284,6 +281,7 @@ form {
       vertical-align: top;
       width: 49%;
       margin-right: 2%;
+      margin-bottom: 2%;
       background: $main-color;
       &:nth-child(2n+2) {
         margin-right: 0%;

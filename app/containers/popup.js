@@ -41,7 +41,6 @@ class Popup extends BaseComponent {
   }
 
   render() {
-    console.log(this.props);
     if (!this.props.open) return null
 
     return (

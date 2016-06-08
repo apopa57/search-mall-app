@@ -6,7 +6,7 @@ import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
 import SelectBox from 'components/common/selectBox'
-import InputField from 'components/common/InputField'
+import InputField from 'components/common/inputField'
 import bindAll from 'lodash/bindAll'
 
 class SearchFilter extends BaseComponent {

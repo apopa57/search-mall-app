@@ -208,6 +208,8 @@ form {
   @include fa-icon(cog);
 }
 
+// Loading Icon
+
 .loading-icon {
   align-items: center;
   background: $primary-color;
@@ -220,7 +222,7 @@ form {
   position: relative;
   width: $loader-size;
   &:before {
-    color: #fff;
+    color: $white;
     content: 'R';
     display: block;
     font-weight: bold;
@@ -231,7 +233,7 @@ form {
     border-radius: 50%;
   }
   &:after {
-    animation: pulse 1.5s infinite ease-out;
+    @include animated(pulse, .85s, 0, ease-out);
     content: '';
     height: $loader-size;
     left: 0;

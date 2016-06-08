@@ -10,7 +10,7 @@ export default (props) => {
       <ul>
         {data.map(item => {
           return (
-            <li key={item.itemCode}>
+            <li key={item.itemCode} className="item">
               <Item data={item} />
             </li>
           )

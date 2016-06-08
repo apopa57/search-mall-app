@@ -12,7 +12,6 @@ import Checkbox from 'components/common/checkbox'
 import bindAll from 'lodash/bindAll'
 import isEmpty from 'lodash/isEmpty'
 
-
 class SearchFilter extends BaseComponent {
   constructor(props) {
     super(props)
@@ -23,20 +22,20 @@ class SearchFilter extends BaseComponent {
     )
   }
 
-  updateParams(value, type) {
+  _updateParams(value, type) {
     const { onSearchParamsChange, searchParams } = this.props
     searchParams[type] = value
     onSearchParamsChange(searchParams)
   }
 
   _onSelectGenresChange(e) {
-    this.updateParams(e.value, 'genreId')
+    this._updateParams(e.value, 'genreId')
   }
 
   _onInputChange(e) {
     const target = e.target
     const value = target.type === 'text' ? target.value : ~~target.checked
-    this.updateParams(value, e.target.id)
+    this._updateParams(value, e.target.id)
   }
 
   _updateChange() {
@@ -65,18 +64,17 @@ class SearchFilter extends BaseComponent {
               id="minPrice"
               className="columns five"
               value={searchParams.minPrice}
-              placeholder={'Min price'}
+              placeholder='Min price'
               onChange={this._onInputChange}/>
             <div className="columns two connect-icon">~</div>
             <InputField
               id="maxPrice"
               className="columns five"
               value={searchParams.maxPrice}
-              placeholder={'Max price'}
+              placeholder='Max price'
               onChange={this._onInputChange}/>
           </div>
         </div>
-
         <div className="filter-box__content">
           <span className="filter-box__label">Include sold out items</span>
           <Checkbox
@@ -86,7 +84,6 @@ class SearchFilter extends BaseComponent {
             onChange={this._onInputChange}
             name="Include sold out items"/>
         </div>
-
         <div className="filter-box__content">
           <span className="filter-box__label">Asaraku service</span>
           <Checkbox
@@ -96,7 +93,6 @@ class SearchFilter extends BaseComponent {
             onChange={this._onInputChange}
             name="Only asaraku items"/>
         </div>
-
         <div className="filter-box__content">
           <span className="filter-box__label">Free shipping</span>
           <Checkbox
@@ -106,18 +102,19 @@ class SearchFilter extends BaseComponent {
             onChange={this._onInputChange}
             name="Only free shipping items"/>
         </div>
-
         <div className="filter-box__content">
           <span className="filter-box__label">Other options</span>
           {
             OTHER_OPTIONS.map(option => {
-              return <Checkbox
-              className="animated-checkbox"
-              key={option.id}
-              id={option.id}
-              value={searchParams[option.id]}
-              onChange={this._onInputChange}
-              name={option.name}/>
+              return (
+                 <Checkbox
+                   className="animated-checkbox"
+                   key={option.id}
+                   id={option.id}
+                   value={searchParams[option.id]}
+                   onChange={this._onInputChange}
+                   name={option.name} />
+              )
             })
           }
         </div>

@@ -26,11 +26,12 @@ const initialState = {
   loading: false,
   error: false,
   isValidated: true,
+  currentPage: 1,
   ids: []
 }
 
 export default (state = initialState, action) => {
-  const { type, error, isValidated, params } = action;
+  const { type, error, isValidated, params, currentPage } = action;
 
   switch (type) {
     case types.SEARCH_PARAMS_CHANGE:
@@ -52,13 +53,29 @@ export default (state = initialState, action) => {
       const { result } = action
       return merge({}, state, {
         loading: false,
-        ids: result
+        ids: result,
+        currentPage: params.page
       })
 
     case types.ITEMS_FAILURE:
       return merge({}, state, {
         loading: false,
         error
+      })
+
+    case types.LOAD_MORE:
+      return merge({}, state, {
+        currentPage
+      })
+
+    case types.LOAD_PREV:
+      return merge({}, state, {
+        currentPage: currentPage - 1
+      })
+
+    case types.LOAD_NEXT:
+      return merge({}, state, {
+        currentPage: currentPage + 1
       })
 
     default:

@@ -6,26 +6,29 @@ import { paramsToQueryString } from 'utils/common'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
 
-const itemsRequest = () => {
+const itemsRequest = (currentPage) => {
   return {
+    currentPage,
     type: types.ITEMS_REQUEST
   }
 }
 
-const itemsSuccess = (entities, result, count, pageCount) => {
+const itemsSuccess = (entities, result, count, pageCount, currentPage) => {
   return {
     type: types.ITEMS_SUCCESS,
     entities,
     result,
     count,
-    pageCount
+    pageCount,
+    currentPage
   }
 }
 
-const itemsFailure = (error) => {
+const itemsFailure = (error, currentPage) => {
   return {
     type: types.ITEMS_FAILURE,
-    error
+    error,
+    currentPage
   }
 }
 
@@ -36,7 +39,7 @@ const shouldSearchItem = (state) => {
   return isValidated;
 }
 
-const searchItems = (url) => {
+const searchItems = (url, page) => {
   return (dispatch, getState) => {
     dispatch(itemsRequest())
     return fetch(url)
@@ -46,9 +49,30 @@ const searchItems = (url) => {
         const items = json.items.map( item => item.item );
         const normalized = normalize(items, arrayOf(ItemSchema))
 
-        dispatch(itemsSuccess(normalized.entities, normalized.result, json.count, json.pageCount))
+        dispatch(itemsSuccess(normalized.entities, normalized.result, json.count, json.pageCount, page))
       })
       .catch(err => dispatch(itemsFailure(err)));
+  }
+}
+
+export const loadMore = (currentPage) => {
+  return {
+    type: types.LOAD_MORE,
+    currentPage
+  }
+}
+
+export const loadPrev = (prevPage) => {
+  return {
+    type: types.LOAD_PREV,
+    prevPage
+  }
+}
+
+export const loadNext = (nextPage) => {
+  return {
+    type: types.LOAD_NEXT,
+    nextPage
   }
 }
 
@@ -56,7 +80,7 @@ export const searchItemsIfNeed = (params) => {
   return (dispatch, getState) => {
     const url = `${ROOT_URL}IchibaItem/Search/20140222?${paramsToQueryString(params)}`
     if(shouldSearchItem(getState())) {
-      dispatch(searchItems(url))
+      dispatch(searchItems(url, params.page))
     }
   }
 }

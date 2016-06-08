@@ -13,6 +13,11 @@ export const RANKING_REQUEST = 'RANKING_REQUEST'
 export const RANKING_SUCCESS = 'RANKING_SUCCESS'
 export const RANKING_FAILURE = 'RANKING_FAILURE'
 
+// Pagination
+export const LOAD_MORE = 'LOAD_MORE'
+export const LOAD_PREV = 'LOAD_PREV'
+export const LOAD_NEXT = 'LOAD_NEXT'
+
 // Other
 export const SEARCH_PARAMS_CHANGE = 'SEARCH_PARAMS_CHANGE'
 export const SELECT_GENRE = 'SELECT_GENRE'

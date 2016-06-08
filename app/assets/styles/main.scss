@@ -233,7 +233,7 @@ form {
     border-radius: 50%;
   }
   &:after {
-    @include animated(pulse, .85s, 0, ease-out);
+    animation: pulse 1.5s infinite ease-out;
     content: '';
     height: $loader-size;
     left: 0;

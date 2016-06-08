@@ -172,6 +172,26 @@ form {
     .search-page__results__lists {
       min-height: 40em;
     }
+
+    .filter-box__inputfield {
+      input {
+        height: 34px;
+        margin-bottom: 0;
+        bottom: 0;
+        color: #aaa;
+        left: 0;
+        line-height: 34px;
+        padding-left: 10px;
+        padding-right: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 }
 

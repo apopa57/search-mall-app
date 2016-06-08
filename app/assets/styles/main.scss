@@ -185,6 +185,8 @@ form {
     padding-left: .5em;
     margin-bottom: .5em;
     font-size: 1.2em;
+    font-weight: 600;
+    opacity: .8;
   }
   .Select {
     margin-top: 1em;
@@ -338,6 +340,14 @@ form {
   user-select: none;           /* Non-prefixed version, currently*/
 }
 
+.item {
+  height: 380px;
+  overflow: hidden;
+  background: $white;
+  padding: .5em;
+  box-sizing: border-box;
+}
+
 .block-grid {
   padding-top: 2em;
   ul {
@@ -350,7 +360,6 @@ form {
       width: 49%;
       margin-right: 2%;
       margin-bottom: 2%;
-      background: $main-color;
       &:nth-child(2n+2) {
         margin-right: 0%;
         @media (#{$bp-larger-than-phablet}) {
@@ -406,4 +415,10 @@ form {
       }
     }
   }
+}
+
+.error-box {
+  font-size: 2em;
+  color: #333;
+  padding: 1em 0;
 }

@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Loader from 'components/common/loader'
 import ItemGrid from 'components/search/itemGrid'
+import ErrorBox from 'components/common/errorBox'
 
 import {
   selectSearchData,
-  selectSearchLoading
+  selectSearchLoading,
+  selectSearchValidation
 } from 'selectors/search'
 
 class SearchResult extends BaseComponent {
@@ -16,7 +18,7 @@ class SearchResult extends BaseComponent {
   }
 
   render() {
-    const { data, loading }　= this.props
+    const { data, loading, isValidated }　= this.props
     return(
       <div className="columns ten search-page__results">
         <div className="columns twelve search-page__results__menubar">
@@ -30,6 +32,9 @@ class SearchResult extends BaseComponent {
         </div>
         <div className="columns twelve search-page__results__lists">
           <Loader hide={!loading} />
+          <ErrorBox
+            hide={isValidated}
+            content='Please enter search keyword'  />
           <div className="block-grid">
             <ItemGrid data={data} hide={loading} />
           </div>
@@ -42,5 +47,6 @@ class SearchResult extends BaseComponent {
 export default connect(createSelector(
   selectSearchData(),
   selectSearchLoading(),
-  (data, loading) => ({ data, loading})
+  selectSearchValidation(),
+  (data, loading, isValidated) => ({ data, loading, isValidated })
 ))(SearchResult)

@@ -1,61 +1,49 @@
 import React, { PropTypes } from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
+import { togglePopup } from 'actions/popup'
 import { onSearchParamsChange, searchItemsIfNeed } from 'actions/search'
 import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
-import SelectBox from 'components/common/selectBox'
-import InputField from 'components/common/InputField'
-import Checkbox from 'components/common/checkbox'
+import InputField from 'components/common/inputField'
 import bindAll from 'lodash/bindAll'
 
 class SearchBar extends BaseComponent {
   constructor(props) {
     super(props)
-    bindAll(this,
-      '_onInputChange',
-      '_onSubmitForm',
-      '_onTogglePopup'
-    )
+    bindAll(this, 'handleSubmit', 'handleChange')
   }
 
-  updateParams(value, type) {
+  handleChange(event) {
     const { onSearchParamsChange, searchParams } = this.props
-    searchParams[type] = value
+    searchParams.keyword = event.target.value
     onSearchParamsChange(searchParams)
   }
 
-  _onInputChange(e) {
-    this.updateParams(e.target.value, 'keyword')
-  }
+  handleSubmit(event) {
+    event.preventDefault()
 
-  _onSubmitForm(e) {
-    e.preventDefault()
-  }
-
-  _onTogglePopup() {
-
+    const { searchItemsIfNeed, searchParams } = this.props
+    searchItemsIfNeed(searchParams)
   }
 
   render() {
-    const { searchParams } = this.props
+    const { searchParams, togglePopup } = this.props
 
     return (
-      <form onSubmit={this._onSubmitForm} className="search-form">
+      <form onSubmit={this.handleSubmit} className="search-form">
         <div className="columns twelve">
           <InputField
             className="u-full-width"
-            onChange={this._onInputChange}
+            onChange={this.handleChange}
             placeholder="Search"
-            type="text"
+            type="search"
             value={searchParams.keyword} />
-          <button
-            onClick={this._onSubmitForm}>
+          <button onClick={this.handleSubmit}>
             <i className="search-icon" />
           </button>
-          <button
-            onClick={this._onTogglePopup}>
+          <button onClick={togglePopup}>
             <i className="settings-icon" />
           </button>
         </div>
@@ -67,4 +55,4 @@ class SearchBar extends BaseComponent {
 export default connect(createSelector(
   selectSearchParams(),
   (searchParams) => ({ searchParams })
-), { onSearchParamsChange, searchItemsIfNeed })(SearchBar)
+), { onSearchParamsChange, searchItemsIfNeed, togglePopup })(SearchBar)

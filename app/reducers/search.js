@@ -15,7 +15,7 @@ const initialState = {
     asurakuFlag: 0, //Asaraku product
     minPrice: '', //Min price
     maxPrice: '', //Max price
-    sort: '',
+    sort: 'standard',
     creditCardFlag: 0, //Products can pay only with credit
     pamphletFlag: 0, //Products have pamphlet only
     hasMovieFlag: 0, //Products have movie obly

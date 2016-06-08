@@ -17,17 +17,18 @@
  *  @include animated(fadeIn, 1s, 0.5s)
  */
 
+
 @mixin animated($name: fadeIn, $duration: 1s, $delay: 0.2s, $function: ease, $mode: both) {
-  @include animationType($name, $duration, $delay, $function, $mode);
+  @include animationType($name $duration $delay $function $mode);
 }
 
 //define animation type
-@mixin animationType($name, $duration, $delay, $function, $mode) {
-  -webkit-animation: #{$name $duration $delay $function $mode};
-  -moz-animation: #{$name $duration $delay $function $mode};
-  -ms-animation: #{$name $duration $delay $function $mode};
-  -o-animation: #{$name $duration $delay $function $mode};
-  animation: #{$name $duration $delay $function $mode};
+@mixin animationType($arg...) {
+  -webkit-animation: $arg;
+  -moz-animation: $arg;
+  -ms-animation: $arg;
+  -o-animation: $arg;
+  animation: $arg;
 }
 
 //define keyframes
@@ -105,6 +106,16 @@
 
 @mixin scaleRotate($scale, $deg) {
   @include transform(scale($scale) rotate(#{$deg}deg));
+}
+
+@include keyframes(icon-beat) {
+  0% {
+    @include scale(1.5)
+  }
+
+  100% {
+    @include scale(1)
+  }
 }
 
 @include keyframes(fadeIn) {

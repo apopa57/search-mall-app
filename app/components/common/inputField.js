@@ -1,15 +1,16 @@
 import React , { PropTypes } from 'react'
 
 const InputField = (props) => {
-  const { value, placeholder, onChange, className, type } = props;
+  const { value, placeholder, onChange, className, type, id } = props;
 
   return(
     <input
-      type={type}
-      className={className}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange} />
+    type={type}
+    id={id}
+    className={className}
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}/>
   )
 }
 

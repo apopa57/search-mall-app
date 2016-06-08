@@ -1,59 +1,61 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
-import * as popupActions from 'actions/popup'
-import * as searchActions from 'actions/search'
-import * as genreActions from 'actions/genre'
-import * as rankingActions from 'actions/ranking'
-import { API_KEY } from 'constants/base'
+import { onSearchParamsChange, searchItemsIfNeed } from 'actions/search'
+import { createSelector } from 'reselect'
+import { selectGenres } from 'selectors/genres'
+import { selectSearchParams } from 'selectors/search'
+import SelectBox from 'components/common/selectBox'
+import InputField from 'components/common/InputField'
+import Checkbox from 'components/common/checkbox'
+import bindAll from 'lodash/bindAll'
 
 class SearchBar extends BaseComponent {
   constructor(props) {
-    super(props);
-
-    this.state = {
-      query: ''
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.togglePopup = this.togglePopup.bind(this)
+    super(props)
+    bindAll(this,
+      '_onInputChange',
+      '_onSubmitForm',
+      '_onTogglePopup'
+    )
   }
 
-  componentWillMount() {
-    const { searchItemsIfNeed, fetchGenresIfNeeded, fetchRankingIfNeeded } = this.props
-
+  updateParams(value, type) {
+    const { onSearchParamsChange, searchParams } = this.props
+    searchParams[type] = value
+    onSearchParamsChange(searchParams)
   }
 
-  handleChange(event) {
-    this.setState({
-      query: event.target.value
-    })
+  _onInputChange(e) {
+    this.updateParams(e.target.value, 'keyword')
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  _onSubmitForm(e) {
+    e.preventDefault()
   }
 
-  togglePopup() {
-    this.props.togglePopup()
+  _onTogglePopup() {
+
   }
 
   render() {
+    const { searchParams } = this.props
+
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this._onSubmitForm} className="search-form">
         <div className="columns twelve">
-          <input
+          <InputField
             className="u-full-width"
-            onChange={this.handleChange}
+            onChange={this._onInputChange}
             placeholder="Search"
-            type="search"
-            value={this.state.query} />
+            type="text"
+            value={searchParams.keyword} />
           <button
-            onClick={this.handleSubmit}>
+            onClick={this._onSubmitForm}>
             <i className="search-icon" />
           </button>
           <button
-            onClick={this.togglePopup}>
+            onClick={this._onTogglePopup}>
             <i className="settings-icon" />
           </button>
         </div>
@@ -62,12 +64,7 @@ class SearchBar extends BaseComponent {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { entities } = state;
-
-  return {
-    genres: entities.genres
-  }
-}
-
-export default connect(mapStateToProps, {...searchActions, ...genreActions, ...popupActions, ...rankingActions})(SearchBar)
+export default connect(createSelector(
+  selectSearchParams(),
+  (searchParams) => ({ searchParams })
+), { onSearchParamsChange, searchItemsIfNeed })(SearchBar)

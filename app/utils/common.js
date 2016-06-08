@@ -14,6 +14,7 @@ export const paramsToQueryString = (params) => {
   const k = Object.keys(params);
   let s = '';
   for(let i=0; i<k.length; i++) {
+    if(typeof params[k[i]] === 'string' && !params[k[i]].length) continue
     s += `${k[i]}=${encodeURIComponent(params[k[i]])}`;
     if (i != k.length -1) s += '&';
   }

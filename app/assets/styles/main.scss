@@ -1,6 +1,7 @@
 @import 'skeleton';
 @import 'vendor/fontAwesome/font-awesome-extend';
 @import 'vendor/fontAwesome/font-awesome-mixin';
+@import 'vendor/animated/animated';
 @import 'vendor/react-select/components';
 @import 'base/mixins';
 @import 'modules/header';
@@ -189,6 +190,7 @@ form {
     margin-top: 1em;
   }
   .filter-box__inputfield {
+    position: relative;
     margin-top: .5em;
     input {
       height: $input-height;
@@ -203,6 +205,21 @@ form {
     height: $input-height;
     line-height: $input-height;
     font-size: 2em;
+  }
+
+  .filter-box__btn  {
+    background: $main-color;
+    display: inline-block;
+    width: 100%;
+    color: $white;
+    border: none;
+    margin-top: 1em;
+  }
+}
+
+.search-form {
+  input[type='text'] {
+    padding-left: 70px;
   }
 }
 
@@ -269,6 +286,58 @@ form {
   }
 }
 
+.animated-checkbox {
+  height: $input-height;
+  line-height: $input-height;
+  label {
+    color: $border-color;
+    position: relative;
+    padding-left: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    color: $dark-grey;
+    font-weight: 400;
+    &:before, &:after {
+      font-family: FontAwesome;
+      font-size: 1.5em;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $border-color;
+    }
+    &:before {
+      content: '\f096';
+    }
+    &:after {
+      content: '\f046';
+      max-width: 0;
+      overflow: hidden;
+      opacity: 0.5;
+      transition: all 0.35s;
+    }
+  }
+
+  /*hiding the original checkboxes*/
+
+  input[type="checkbox"] {
+    display: none;
+    &:checked + label:after {
+      max-width: 25px;
+      /*an arbitratry number more than the icon's width*/
+      opacity: 1;
+      /*for fade in effect*/
+    }
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently*/
+}
 
 .block-grid {
   padding-top: 2em;

@@ -3,6 +3,7 @@ import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Loader from 'components/common/loader'
+import ItemGrid from 'components/search/itemGrid'
 
 import {
   selectSearchData,
@@ -15,6 +16,7 @@ class SearchResult extends BaseComponent {
   }
 
   render() {
+    const { data, loading }　= this.props
     return(
       <div className="columns ten search-page__results">
         <div className="columns twelve search-page__results__menubar">
@@ -27,9 +29,9 @@ class SearchResult extends BaseComponent {
           </div>
         </div>
         <div className="columns twelve search-page__results__lists">
-          <Loader />
+          <Loader hide={!loading} />
           <div className="block-grid">
-
+            <ItemGrid data={data} hide={loading} />
           </div>
         </div>
       </div>

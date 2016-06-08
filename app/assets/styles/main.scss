@@ -271,3 +271,73 @@ form {
     }
   }
 }
+
+
+.block-grid {
+  padding-top: 2em;
+  ul {
+    margin: 0 auto;
+    text-align: center;
+    li {
+      float: left;
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+      margin-right: 2%;
+      background: $main-color;
+      &:nth-child(2n+2) {
+        margin-right: 0%;
+        @media (#{$bp-larger-than-phablet}) {
+          margin-right: 2%;
+        }
+      }
+
+      @media (#{$bp-larger-than-phablet}) {
+        width: 32%;
+        &:nth-child(3n+3) {
+          margin-right: 0;
+          @media (#{$bp-larger-than-tablet}) {
+            margin-right: 2%;
+          }
+        }
+      }
+
+      @media (#{$bp-larger-than-tablet}) {
+        width: 23.5%;
+        &:nth-child(4n+4) {
+          margin-right: 0;
+          @media (#{$bp-larger-than-desktop}) {
+            margin-right: 2%;
+          }
+        }
+      }
+
+      @media (#{$bp-larger-than-desktop}) {
+        width: 18.4%;
+        &:nth-child(5n+5) {
+          margin-right: 0;
+          @media (#{$bp-larger-than-desktophd}) {
+            margin-right: 2%;
+          }
+        }
+      }
+
+      @media (#{$bp-larger-than-desktophd}) {
+        width: 15%;
+        &:nth-child(6n+6) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.list-grid {
+  .block-grid {
+    ul {
+      li {
+        width: 100%;
+      }
+    }
+  }
+}

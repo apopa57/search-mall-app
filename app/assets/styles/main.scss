@@ -234,8 +234,7 @@ form {
   height: $loader-size;
   justify-content: center;
   left: 50%;
-  margin: 1em 0 0 -($loader-size/2);
-  margin-top: 20%;
+  margin: 20% 0 0 ($loader-size / 2 * -1);
   position: relative;
   width: $loader-size;
   &:before {

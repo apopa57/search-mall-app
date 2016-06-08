@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { togglePopup } from 'actions/popup'
@@ -32,7 +32,7 @@ class SearchBar extends BaseComponent {
     const { searchParams, togglePopup } = this.props
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="search-form">
         <div className="columns twelve">
           <InputField
             className="u-full-width"
@@ -53,7 +53,6 @@ class SearchBar extends BaseComponent {
 }
 
 export default connect(createSelector(
-  selectGenres(),
   selectSearchParams(),
-  (genres, searchParams) => ({ genres, searchParams })
+  (searchParams) => ({ searchParams })
 ), { onSearchParamsChange, searchItemsIfNeed, togglePopup })(SearchBar)

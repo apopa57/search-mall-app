@@ -1,5 +1,4 @@
 @import 'skeleton';
-@import 'vendor/loader/loader';
 @import 'vendor/fontAwesome/font-awesome-extend';
 @import 'vendor/fontAwesome/font-awesome-mixin';
 @import 'vendor/react-select/components';
@@ -209,12 +208,46 @@ form {
   @include fa-icon(cog);
 }
 
-.loading-icon {
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
+// Loading Icon
 
-  div {
-    @include loader1(.8em, 10px, $main-color, 20%);
+.loading-icon {
+  align-items: center;
+  background: $primary-color;
+  border: $loader-border-width solid #fff;
+  display: flex;
+  height: $loader-size;
+  justify-content: center;
+  left: 50%;
+  margin: 1em 0 0 -($loader-size/2);
+  position: relative;
+  width: $loader-size;
+  &:before {
+    color: $white;
+    content: 'R';
+    display: block;
+    font-weight: bold;
+    font-size: $loader-size / 1.75;
+  }
+  &,
+  &:after {
+    border-radius: 50%;
+  }
+  &:after {
+    @include animated(pulse, .85s, 0, ease-out);
+    content: '';
+    height: $loader-size;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $loader-size;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 $primary-color;
+    }
+    100% {
+      box-shadow: 0 0 0 $loader-border-width rgba($primary-color, 0);
+    }
   }
 }

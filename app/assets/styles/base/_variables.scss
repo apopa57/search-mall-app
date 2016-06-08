@@ -48,6 +48,10 @@ $height-60: 60px;
 $height-100: 100px;
 $search-button-size: 35px;
 
+// Loading Icon
+$loader-size: 75px;
+$loader-border-width: ($loader-size / 6);
+
 $select-input-bg:                  #fff !default;
 $select-input-bg-disabled:         #f9f9f9 !default;
 $select-input-border-color:        #ccc !default;

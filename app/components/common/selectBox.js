@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import BaseComponent from 'utils/baseComponent'
 import Select from 'react-select'
 
 const SelectBox = (props) => {

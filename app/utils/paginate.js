@@ -1,8 +1,7 @@
-import merge from 'lodash/merge';
-import union from 'lodash/union';
+import merge from 'lodash/merge'
 
 export default ({ types, mapActionToKey }) => {
-  if (!Array.isArray(types) || types.length !== 3) {
+  if (!Array.isArray(types) || types.length !== 4) {
     throw new Error('Expected types to be an array of three elements.')
   }
   if (!types.every(t => typeof t === 'string')) {
@@ -12,57 +11,50 @@ export default ({ types, mapActionToKey }) => {
     throw new Error('Expected mapActionToKey to be a function.')
   }
 
-  const [ requestType, successType, failureType ] = types;
+  const [ newquestType, requestType, successType, failureType ] = types;
 
   const initialState = {
-    loading: false,
-    nextPageUrl: null,
-    prevPageUrl: null,
-    lastPageUrl: null,
-    firstPageUrl: null,
-    pageCount: 0
-  };
+    currentPage: 1,
+    pageCount: 0,
+    totalCount: 0,
+    ids:{
+      1: []
+    }
+  }
 
-  function updatePagination(state = initialState, action) {
+  function updatePagination(state = [] , action) {
     switch (action.type) {
-      case requestType:
-        return merge({}, state, {
-          loading: true
-        })
       case successType:
-        const nextPageCount = state.pageCount;
-        const { nextUrl, prevUrl, lastUrl, firstUrl } = action.response;
-        return merge({}, state, {
-          loading: false,
-          nextPageUrl: nextUrl,
-          prevPageUrl: prevUrl,
-          lastPageUrl: lastUrl,
-          firstPageUrl: firstUrl,
-          pageCount: nextPageCount + 1
-        });
-      case failureType:
-        return merge({}, state, {
-          loading: false
-        })
+        return merge({}, state, action.result);
       default:
         return state
     }
   }
 
-  return function updatePaginationByKey(state = {}, action) {
-    switch (action.type) {
-      case requestType:
-      case successType:
-      case failureType:
-        const key = mapActionToKey(action)
+  return function updatePaginationByKey(state = initialState, action) {
+    const key = mapActionToKey(action)
 
-        if (typeof key !== 'string') {
-          throw new Error('Expected key to be a string.')
-        }
+    switch (action.type) {
+      case successType:
+        const { currentPage, pageCount, count } = action
 
         return merge({}, state, {
-          [key]: updatePagination(state.key, action)
+          currentPage,
+          pageCount,
+          totalCount: count,
+          ids: {
+            [key]: updatePagination(state.ids.key, action)
+          }
         })
+      case requestType:
+      case failureType:
+        return merge({}, state, {
+          currentPage,
+          ids: {
+            [key]: updatePagination(state.ids.key, action)
+          }
+        })
+      case newquestType:
       default:
         return state
     }

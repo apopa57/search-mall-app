@@ -3,7 +3,8 @@
  * NOTE: State here is application state
  */
 
-import { createSelector } from 'reselect';
+import { createSelector } from 'reselect'
+import { selectSearchCurrentPage, selectSearchIds } from 'selectors/pagination'
 
 const selectSearch = () => state => state.search;
 
@@ -25,9 +26,10 @@ const selectSearchLoading = () => createSelector(
 );
 
 const selectSearchData = () => createSelector(
-  selectSearch(),
+  selectSearchCurrentPage(),
+  selectSearchIds(),
   selectItems(),
-  (searchState, items) => searchState.ids.map(id => items[id])
+  (currentPage, ids, items) => ids[currentPage].map(id => items[id])
 );
 
 const selectSearchError = () => createSelector(

@@ -4,7 +4,21 @@ import { ROOT_URL } from 'constants/base'
 import { ItemSchema } from 'constants/schemas'
 import { paramsToQueryString } from 'utils/common'
 import { camelizeKeys } from 'humps'
+import isEmpty from 'lodash/isEmpty'
 import 'isomorphic-fetch'
+
+const newRequest = () => {
+  return {
+    type: types.NEW_REQUEST
+  }
+}
+
+const onPagePagination = (currentPage) => {
+  return {
+    type: types.PAGINATE_PAGE,
+    currentPage
+  }
+}
 
 const itemsRequest = (currentPage) => {
   return {
@@ -33,15 +47,19 @@ const itemsFailure = (error, currentPage) => {
 }
 
 const shouldSearchItem = (state) => {
-  const { loading, isValidated } = state.search;
+  const { loading, isValidated, newSearch, currentPage } = state.search
+  const { ids } =  state.pagination.search
+
+  console.log(currentPage)
+
 
   if(loading) return false;
   return isValidated;
 }
 
 const searchItems = (url, page) => {
-  return (dispatch, getState) => {
-    dispatch(itemsRequest())
+  return dispatch => {
+    dispatch(itemsRequest(page))
     return fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -51,34 +69,24 @@ const searchItems = (url, page) => {
 
         dispatch(itemsSuccess(normalized.entities, normalized.result, json.count, json.pageCount, page))
       })
-      .catch(err => dispatch(itemsFailure(err)));
+      .catch(err => dispatch(itemsFailure(err, page)));
   }
 }
 
-export const loadMore = (currentPage) => {
-  return {
-    type: types.LOAD_MORE,
-    currentPage
-  }
-}
-
-export const loadPrev = (prevPage) => {
-  return {
-    type: types.LOAD_PREV,
-    prevPage
-  }
-}
-
-export const loadNext = (nextPage) => {
-  return {
-    type: types.LOAD_NEXT,
-    nextPage
-  }
-}
-
-export const searchItemsIfNeed = (params) => {
+export const updateSeachParams = (key, value) => {
   return (dispatch, getState) => {
+    const { params }  = getState().search
+    params[key] = value
+    dispatch(onSearchParamsChange(params))
+  }
+}
+
+export const searchItemsIfNeed = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const { params } = state.search;
     const url = `${ROOT_URL}IchibaItem/Search/20140222?${paramsToQueryString(params)}`
+    dispatch(checkValidation(!isEmpty(params.keyword)))
     if(shouldSearchItem(getState())) {
       dispatch(searchItems(url, params.page))
     }
@@ -96,5 +104,19 @@ export const onSearchParamsChange = (params) => {
   return {
     type: types.SEARCH_PARAMS_CHANGE,
     params
+  }
+}
+
+export const paginateSearching = (currentPage) => {
+  return dispatch => {
+    dispatch(onPagePagination(currentPage))
+    dispatch(updateSeachParams('page', currentPage))
+  }
+}
+
+export const resetSearch = () => {
+  return dispatch => {
+    dispatch(newRequest())
+    dispatch(updateSeachParams('page', 1))
   }
 }

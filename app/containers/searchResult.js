@@ -5,6 +5,7 @@ import { createSelector } from 'reselect'
 import Loader from 'components/common/loader'
 import ItemGrid from 'components/search/itemGrid'
 import ErrorBox from 'components/common/errorBox'
+import Pagination from 'containers/searchPagination'
 
 import {
   selectSearchData,
@@ -19,13 +20,14 @@ class SearchResult extends BaseComponent {
 
   render() {
     const { data, loading, isValidated }　= this.props
+
     return(
       <div className="columns ten search-page__results">
         <div className="columns twelve search-page__results__menubar">
           <div className="search-page__results__title">
             <span>Search results</span>
           </div>
-          <div className=" search-page__results__gridicon">
+          <div className="search-page__results__gridicon">
             <span className="box-icon active"></span>
             <span className="list-icon"></span>
           </div>
@@ -34,10 +36,13 @@ class SearchResult extends BaseComponent {
           <Loader hide={!loading} />
           <ErrorBox
             hide={isValidated}
-            content='Please enter search keyword'  />
+            content='Please enter search keyword' />
           <div className="block-grid">
             <ItemGrid data={data} hide={loading} />
           </div>
+        </div>
+        <div className="columns twelve search-page__results__pagination">
+          <Pagination />
         </div>
       </div>
     )

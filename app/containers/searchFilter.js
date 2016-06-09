@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { searchItemsIfNeed, updateSeachParams } from 'actions/search'
+import { doNewSearch, updateSeachParams, resetSearch } from 'actions/search'
 import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
@@ -32,8 +32,8 @@ class SearchFilter extends BaseComponent {
   }
 
   _applyAdvancedsearch() {
-    const { searchParams, searchItemsIfNeed } = this.props
-    searchItemsIfNeed(searchParams)
+    const { doNewSearch } = this.props
+    doNewSearch()
   }
 
   render() {
@@ -124,4 +124,4 @@ export default connect(createSelector(
   selectGenres(),
   selectSearchParams(),
   (genres, searchParams) => ({ genres, searchParams })
-), { updateSeachParams, searchItemsIfNeed })(SearchFilter)
+), { updateSeachParams, doNewSearch, resetSearch })(SearchFilter)

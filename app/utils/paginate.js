@@ -17,44 +17,41 @@ export default ({ types, mapActionToKey }) => {
     currentPage: 1,
     pageCount: 0,
     totalCount: 0,
-    ids:{
-      1: []
-    }
-  }
-
-  function updatePagination(state = [] , action) {
-    switch (action.type) {
-      case successType:
-        return merge({}, state, action.result);
-      default:
-        return state
-    }
+    ids:{}
   }
 
   return function updatePaginationByKey(state = initialState, action) {
     const key = mapActionToKey(action)
 
     switch (action.type) {
+      case newquestType:
+        return Object.assign({}, state, {
+          currentPage: 1,
+          pageCount: 0,
+          totalCount: 0,
+          ids:{}
+        })
+
       case successType:
         const { currentPage, pageCount, count } = action
-
-        return merge({}, state, {
+        return Object.assign({}, state, {
           currentPage,
           pageCount,
           totalCount: count,
-          ids: {
-            [key]: updatePagination(state.ids.key, action)
-          }
+          ids: merge({}, state.ids, {
+            [key]: action.result
+          })
         })
+
       case requestType:
       case failureType:
-        return merge({}, state, {
+        return Object.assign({}, state, {
           currentPage,
-          ids: {
-            [key]: updatePagination(state.ids.key, action)
-          }
+          ids: merge({}, state.ids, {
+            [key]: action.result
+          })
         })
-      case newquestType:
+
       default:
         return state
     }

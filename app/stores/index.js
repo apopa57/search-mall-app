@@ -7,7 +7,7 @@ import { routerMiddleware } from 'react-router-redux';
 // Check if current env is dev or prod
 const isDev = process.env.NODE_ENV !== 'production';
 // Redux devtool chrome extension
-const devtools = window.devToolsExtension || (() => noop => noop);
+// const devtools = window.devToolsExtension || (() => noop => noop);
 
 export default (initialState, history) => {
   const middlewares = [
@@ -21,7 +21,7 @@ export default (initialState, history) => {
     applyMiddleware(...middlewares)
   ];
 
-  if(isDev) enhancers.push(devtools());
+  // if(isDev) enhancers.push(devtools());
 
   const store = createStore(
     rootReducer(),

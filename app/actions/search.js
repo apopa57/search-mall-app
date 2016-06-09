@@ -46,6 +46,20 @@ const itemsFailure = (error, currentPage) => {
   }
 }
 
+export const checkValidation = (isValidated) => {
+  return {
+    type: types.CHECK_VALIDATION,
+    isValidated
+  }
+}
+
+export const onSearchParamsChange = (params) => {
+  return {
+    type: types.SEARCH_PARAMS_CHANGE,
+    params
+  }
+}
+
 const shouldSearchItem = (state) => {
   const { loading, isValidated, newSearch, currentPage } = state.search
   const { ids } =  state.pagination.search
@@ -81,10 +95,8 @@ export const updateSeachParams = (key, value) => {
   }
 }
 
-export const searchItemsIfNeed = () => {
+export const searchItemsIfNeed = (params) => {
   return (dispatch, getState) => {
-    const state = getState();
-    const { params } = state.search;
     const url = `${ROOT_URL}IchibaItem/Search/20140222?${paramsToQueryString(params)}`
     dispatch(checkValidation(!isEmpty(params.keyword)))
     if(shouldSearchItem(getState())) {
@@ -93,30 +105,18 @@ export const searchItemsIfNeed = () => {
   }
 }
 
-export const checkValidation = (isValidated) => {
-  return {
-    type: types.CHECK_VALIDATION,
-    isValidated
-  }
-}
-
-export const onSearchParamsChange = (params) => {
-  return {
-    type: types.SEARCH_PARAMS_CHANGE,
-    params
-  }
-}
-
 export const paginateSearching = (currentPage) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(onPagePagination(currentPage))
     dispatch(updateSeachParams('page', currentPage))
+    dispatch(searchItemsIfNeed(getState().search.params))
   }
 }
 
-export const resetSearch = () => {
-  return dispatch => {
+export const doNewSearch = () => {
+  return (dispatch, getState) => {
     dispatch(newRequest())
     dispatch(updateSeachParams('page', 1))
+    dispatch(searchItemsIfNeed(getState().search.params))
   }
 }

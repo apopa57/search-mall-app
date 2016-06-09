@@ -3,15 +3,14 @@ import Item from 'components/common/item'
 
 export default (props) => {
   const { data, hide } = props
-  if (hide || data.length === 0) return null
-  console.log(props);
+  if (hide || data.length === 0) return false
   return (
     <section>
-      <ul>
+      <ul className="items-list">
         {data.map(item => {
           return (
-            <li key={item.itemCode} className="item">
-              <Item data={item} />
+            <li key={item.itemCode}>
+              <Item item={item} />
             </li>
           )
         })}

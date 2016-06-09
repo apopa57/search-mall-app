@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
+import { numberWithCommas } from 'utils/common'
 
-export default (props) => {
-  const { data } = props;
+const Item = (props) => {
+  const { item } = props
+
+
 
   return (
-    <div>
-      <img src={data.mediumImageUrls[0].imageUrl} />
-      <h4>{data.itemName}</h4>
+    <div className="item" >
+      <div className="item__img-wrap">
+        <img src={item.mediumImageUrls[0].imageUrl} />
+      </div>
+      <div className="item__name">
+        <span>{item.itemName}</span>
+      </div>
+      <div className="item__price">
+        <span>{`${numberWithCommas(item.itemPrice)} 円`}</span>
+      </div>
     </div>
   )
 }
+
+Item.propTypes = {
+  item: PropTypes.object
+}
+
+export default Item

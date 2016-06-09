@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-export default (props) => {
-  const { data } = props;
+const Item = (props) => {
+  const { item } = props
 
   return (
-    <div>
-      <img src={data.mediumImageUrls[0].imageUrl} />
-      <h4>{data.itemName}</h4>
+    <div className="item" >
+      <div className="item__img">
+        <img src={item.mediumImageUrls[0].imageUrl} />
+      </div>
+
+
+
+
     </div>
   )
 }
+
+export default Item

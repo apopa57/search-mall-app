@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { togglePopup } from 'actions/popup'
-import { updateSeachParams, searchItemsIfNeed, resetSearch } from 'actions/search'
+import { updateSeachParams, doNewSearch } from 'actions/search'
 import { createSelector } from 'reselect'
 import { selectSearchParams } from 'selectors/search'
 import { push } from 'react-router-redux'
@@ -21,11 +21,10 @@ class SearchBar extends BaseComponent {
 
   _handleSubmit(event) {
     event.preventDefault()
-    const { searchItemsIfNeed, searchParams,  push, resetSearch } = this.props
-    // Alway reset page to 1 when submit form
+    const { doNewSearch, searchParams,  push } = this.props
+    // Alway reset search params when submit form
     push(`search?q=${searchParams.keyword}`)
-    resetSearch()
-    searchItemsIfNeed(searchParams)
+    doNewSearch()
   }
 
   render() {
@@ -55,4 +54,4 @@ class SearchBar extends BaseComponent {
 export default connect(createSelector(
   selectSearchParams(),
   (searchParams) => ({ searchParams })
-), { updateSeachParams, searchItemsIfNeed, resetSearch, togglePopup, push })(SearchBar)
+), { updateSeachParams, doNewSearch, togglePopup, push })(SearchBar)

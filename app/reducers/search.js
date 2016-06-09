@@ -7,6 +7,7 @@ const initialState = {
   params: {
     applicationId: API_KEY,
     format: 'json',
+    hits: 20,
     keyword: '',  //Search value
     availability: 0, //Only available product
     genreId: 0, //Genre id
@@ -28,7 +29,8 @@ const initialState = {
   error: false,
   isValidated: true,
   newSearch: true,
-  currentPage: 1
+  currentPage: 1,
+  ids: []
 }
 
 export default (state = initialState, action) => {
@@ -37,7 +39,8 @@ export default (state = initialState, action) => {
   switch (type) {
     case types.NEW_REQUEST:
       return merge({}, state, {
-        newSearch: true
+        newSearch: true,
+        currentPage: 1
       })
 
     case types.SEARCH_PARAMS_CHANGE:
@@ -56,6 +59,14 @@ export default (state = initialState, action) => {
       })
 
     case types.ITEMS_SUCCESS:
+      const { result } = action
+
+      return merge({}, state, {
+        loading: false,
+        ids: result
+      })
+
+
     case types.ITEMS_FAILURE:
       return merge({}, state, {
         loading: false,

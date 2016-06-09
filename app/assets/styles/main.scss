@@ -314,7 +314,6 @@ form {
   height: $input-height;
   line-height: $input-height;
   label {
-    color: $border-color;
     position: relative;
     padding-left: 30px;
     font-size: 14px;
@@ -327,7 +326,8 @@ form {
       position: absolute;
       top: 0;
       left: 0;
-      color: $border-color;
+      color: $dark-grey;
+      opacity: .8
     }
     &:before {
       content: '\f096';
@@ -336,7 +336,7 @@ form {
       content: '\f046';
       max-width: 0;
       overflow: hidden;
-      opacity: 0.5;
+      opacity: 0.8;
       transition: all 0.35s;
     }
   }
@@ -364,11 +364,17 @@ form {
 }
 
 .item {
-  height: 380px;
+  height: 320px;
   overflow: hidden;
   background: $white;
   padding: .5em;
   box-sizing: border-box;
+  // border: 1px solid $border-color;
+  &:hover {
+    -webkit-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
+  }
 }
 
 .block-grid {

@@ -26,10 +26,9 @@ const selectSearchLoading = () => createSelector(
 );
 
 const selectSearchData = () => createSelector(
-  selectSearchCurrentPage(),
-  selectSearchIds(),
+  selectSearch(),
   selectItems(),
-  (currentPage, ids, items) => ids[currentPage].map(id => items[id])
+  (searchState, items) => searchState.ids.map(id => items[id])
 );
 
 const selectSearchError = () => createSelector(

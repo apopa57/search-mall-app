@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 const Checkbox = (props) => {
-  const { onChange, value, className, name, id } = props
+  const { id, className, value, onChange, name } = props
 
   return(
     <div className="filter-box__inputfield">

@@ -16,7 +16,7 @@ export default {
 
       if (!value) return null
 
-      if (value[0] === "{") {
+      if (value[0] === '{') {
         value = JSON.parse(value)
       }
 
@@ -35,5 +35,5 @@ export default {
     }
 
     return null
-  },
+  }
 }

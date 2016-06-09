@@ -1,4 +1,4 @@
-import React , { PropTypes } from 'react'
+import React from 'react'
 import SearchResult from 'containers/searchResult'
 import SearchFilter from './searchFilter'
 

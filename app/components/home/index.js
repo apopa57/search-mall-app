@@ -1,6 +1,4 @@
 import React from 'react'
-import SearchBar from 'containers/searchBar'
-import SearchResult from 'containers/searchResult'
 
 export default () => {
   return(

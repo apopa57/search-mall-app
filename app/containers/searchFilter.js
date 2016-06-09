@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { onSearchParamsChange, searchItemsIfNeed, checkValidation } from 'actions/search'
+import { searchItemsIfNeed, updateSeachParams } from 'actions/search'
 import { createSelector } from 'reselect'
 import { selectGenres } from 'selectors/genres'
 import { selectSearchParams } from 'selectors/search'
@@ -10,7 +10,6 @@ import SelectBox from 'components/common/selectBox'
 import InputField from 'components/common/inputField'
 import Checkbox from 'components/common/checkbox'
 import bindAll from 'lodash/bindAll'
-import isEmpty from 'lodash/isEmpty'
 
 class SearchFilter extends BaseComponent {
   constructor(props) {
@@ -18,29 +17,22 @@ class SearchFilter extends BaseComponent {
     bindAll(this,
       '_onSelectGenresChange',
       '_onInputChange',
-      '_updateChange'
+      '_applyAdvancedsearch'
     )
   }
 
-  _updateParams(value, type) {
-    const { onSearchParamsChange, searchParams } = this.props
-    searchParams[type] = value
-    onSearchParamsChange(searchParams)
-  }
-
   _onSelectGenresChange(e) {
-    this._updateParams(e.value, 'genreId')
+    this.props.updateSeachParams('genreId', e.value)
   }
 
   _onInputChange(e) {
     const target = e.target
     const value = target.type === 'text' ? target.value : ~~target.checked
-    this._updateParams(value, e.target.id)
+    this.props.updateSeachParams(e.target.id, value)
   }
 
-  _updateChange() {
-    const { searchParams, searchItemsIfNeed, checkValidation } = this.props
-    checkValidation(!isEmpty(searchParams.keyword))
+  _applyAdvancedsearch() {
+    const { searchParams, searchItemsIfNeed } = this.props
     searchItemsIfNeed(searchParams)
   }
 
@@ -119,7 +111,7 @@ class SearchFilter extends BaseComponent {
           }
         </div>
         <div className="filter-box__content">
-          <button className="filter-box__btn" onClick={this._updateChange}>
+          <button className="filter-box__btn" onClick={this._applyAdvancedsearch}>
             Apply
           </button>
         </div>
@@ -132,4 +124,4 @@ export default connect(createSelector(
   selectGenres(),
   selectSearchParams(),
   (genres, searchParams) => ({ genres, searchParams })
-), { onSearchParamsChange, searchItemsIfNeed, checkValidation })(SearchFilter)
+), { updateSeachParams, searchItemsIfNeed })(SearchFilter)

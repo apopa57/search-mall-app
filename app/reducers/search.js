@@ -1,6 +1,7 @@
 import * as types from 'constants/actionTypes'
 import { API_KEY } from 'constants/base'
 import merge from 'lodash/merge'
+import assign from 'lodash/assign'
 
 const initialState = {
   params: {
@@ -26,14 +27,19 @@ const initialState = {
   loading: false,
   error: false,
   isValidated: true,
-  currentPage: 1,
-  ids: []
+  newSearch: true,
+  currentPage: 1
 }
 
 export default (state = initialState, action) => {
   const { type, error, isValidated, params, currentPage } = action;
 
   switch (type) {
+    case types.NEW_REQUEST:
+      return merge({}, state, {
+        newSearch: true
+      })
+
     case types.SEARCH_PARAMS_CHANGE:
       return merge({}, state, {
         params
@@ -50,32 +56,18 @@ export default (state = initialState, action) => {
       })
 
     case types.ITEMS_SUCCESS:
-      const { result } = action
-      return merge({}, state, {
-        loading: false,
-        ids: result,
-        currentPage: params.page
-      })
-
     case types.ITEMS_FAILURE:
       return merge({}, state, {
         loading: false,
-        error
       })
 
-    case types.LOAD_MORE:
+    case types.PAGINATE_PAGE:
       return merge({}, state, {
-        currentPage
-      })
-
-    case types.LOAD_PREV:
-      return merge({}, state, {
-        currentPage: currentPage - 1
-      })
-
-    case types.LOAD_NEXT:
-      return merge({}, state, {
-        currentPage: currentPage + 1
+        newSearch: false,
+        currentPage,
+        params: {
+          page: currentPage
+        }
       })
 
     default:

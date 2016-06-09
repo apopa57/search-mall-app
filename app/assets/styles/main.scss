@@ -39,9 +39,10 @@ body, html {
   }
 }
 
-.home-page {
-
+.page-content {
+  padding: 1em 0;
 }
+
 
 // Search Form
 
@@ -366,14 +367,62 @@ form {
 .item {
   height: 320px;
   overflow: hidden;
-  background: $white;
-  padding: .5em;
   box-sizing: border-box;
+  position: relative;
   // border: 1px solid $border-color;
   &:hover {
-    -webkit-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
-    -moz-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
+  }
+  .item__img-wrap {
+    height: 180px;
+    line-height: 180px;
+    text-align: center;
+    padding: .5em;
+    margin-bottom: .5em;
+    background: #f7f7f9;
+    box-sizing: border-box;
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .item__price {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5em 1em;
+    color: $main-color;
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: left;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: 400;
+    text-align: center;
+    @media (#{$bp-larger-than-mobile}) {
+      font-size: 1.5em;
+    }
+
+  }
+
+  .item__name {
+    padding: 0.5em 1em;
+    span {
+      display: block;
+      display: -webkit-box;
+      height: $font-size*$line-height*$lines-to-show;
+      margin: 0 auto;
+      line-height: $line-height;
+      -webkit-line-clamp: $lines-to-show;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: $font-size;
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+      color: $dark-grey;
+    }
   }
 }
 

@@ -61,8 +61,8 @@ export const onSearchParamsChange = (params) => {
 }
 
 const shouldSearchItem = (state) => {
-  const { loading, isValidated, newSearch, currentPage } = state.search
-  const { ids } =  state.pagination.search
+  const { loading, isValidated, newSearch } = state.search
+  const { ids, currentPage } =  state.pagination.search
 
   console.log(currentPage)
 

@@ -6,11 +6,14 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { selectLocationState } from 'selectors/route';
 import createStore from 'stores';
 import routes from './routes';
+import { bootstrap } from './hooks';
 
 const store = createStore({}, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState()
 });
+
+bootstrap(store)();
 
 ReactDOM.render(
   <Provider store={store}>

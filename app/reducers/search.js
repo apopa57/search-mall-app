@@ -38,47 +38,46 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case types.NEW_REQUEST:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         newSearch: true,
-        currentPage: 1
+        currentPage: 1,
+        ids: []
       })
 
     case types.SEARCH_PARAMS_CHANGE:
-      return merge({}, state, {
-        params
+      return Object.assign({}, state, {
+        params: merge({}, state.params, params)
       })
 
     case types.CHECK_VALIDATION:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         isValidated
       })
 
     case types.ITEMS_REQUEST:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         loading: true
       })
 
     case types.ITEMS_SUCCESS:
       const { result } = action
 
-      return merge({}, state, {
+      return Object.assign({}, state, {
         loading: false,
         ids: result
       })
 
 
     case types.ITEMS_FAILURE:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         loading: false,
       })
 
     case types.PAGINATE_PAGE:
-      return merge({}, state, {
+      return Object.assign({}, state, {
         newSearch: false,
         currentPage,
-        params: {
-          page: currentPage
-        }
+        params: merge({}, state.params, params)
       })
 
     default:

@@ -40,7 +40,10 @@ body, html {
 }
 
 .page-content {
-  padding: 1em 0;
+  padding: 1em 1%;
+  @media (#{$bp-larger-than-mobile}) {
+    padding: 1em 0;
+  }
 }
 
 

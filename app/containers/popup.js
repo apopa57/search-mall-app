@@ -55,10 +55,10 @@ class Popup extends BaseComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { popup } = state;
+  const { layout } = state;
 
   return {
-    open: popup.open
+    open: false
   }
 }
 

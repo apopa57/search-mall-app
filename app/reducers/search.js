@@ -7,7 +7,7 @@ const initialState = {
   params: {
     applicationId: API_KEY,
     format: 'json',
-    hits: 20,
+    hits: 10,
     keyword: '',  //Search value
     availability: 0, //Only available product
     genreId: 0, //Genre id

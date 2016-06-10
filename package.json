@@ -20,6 +20,7 @@
   "author": "Phuc Nguyen Hoang",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
     "compression": "^1.6.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",

@@ -124,7 +124,7 @@ form {
   .search-page__results {
     background-color: $white;
     padding: 1% 0;
-    // box-shadow: $box-shadow;
+    position: relative;
     width: 100%;
     margin-left: 0;
 
@@ -167,6 +167,7 @@ form {
         text-align: center;
         margin-left: .2em;
         font-size: 1.5em;
+        cursor: pointer;
         &.active {
           background: $main-color;
           border-color: $border-color;
@@ -175,12 +176,21 @@ form {
     }
     .search-page__results__lists {
       min-height: 40em;
+      position: relative;
     }
 
     .search-page__results__pagination {
       padding: .5em 0;
       margin-top: 1em;
       text-align: center;
+      position: fixed;
+      bottom: 0;
+      background: $white;
+      opacity: .8;
+      @media (#{$bp-larger-than-desktop}) {
+        position: relative;
+        opacity: 1;
+      }
       ul {
         height: $height-50;
         line-height: $height-50;
@@ -292,9 +302,11 @@ form {
 
 .loader-box {
   width: 100%;
-  height: auto;;
+  height: 100%;
   display: inline-block;
-  position: relative;
+  position: absolute;
+  top:0;
+  left: 0;
   text-align: center;
 
   .loading-icon {
@@ -305,7 +317,7 @@ form {
     border: $loader-border-width solid $white;
     height: $loader-size;
     justify-content: center;
-    margin-top: 20%;
+    margin-top: 25%;
     position: relative;
     width: $loader-size;
     &:before {
@@ -399,7 +411,7 @@ form {
   position: relative;
   // border: 1px solid $border-color;
   &:hover {
-    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
+    // box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.08);
   }
   .item__img-wrap {
     height: 180px;
@@ -548,6 +560,17 @@ form {
       li {
         width: 100%;
       }
+    }
+  }
+
+  .item {
+    .item__img-wrap {
+      img {
+        vertical-align: top;
+      }
+    }
+    .item__name {
+      padding: .5em;
     }
   }
 }

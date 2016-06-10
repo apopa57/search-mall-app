@@ -17,14 +17,14 @@ let config = merge(baseConfig, {
   },
   output: {
     path: defaultSettings.public,
-    filename: '[name].[chunkhash].min.js',
-    chunkFilename: '[chunkhash].min.js'
+    filename: '[name].min.js',
+    chunkFilename: '.min.js'
   },
   cache: false,
   devtool: 'sourcemap',
   plugins: [
     // Output extracted CSS to a file
-    new ExtractTextPlugin('[name].[chunkhash].min.css'),
+    new ExtractTextPlugin('[name].min.css'),
     // Extract vendor and manifest files
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']

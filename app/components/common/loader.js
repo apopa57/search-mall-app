@@ -4,6 +4,8 @@ export default (props) => {
   if (props.hide) return null
 
   return (
-    <div className="loading-icon"></div>
+    <div className="loader-box">
+      <div className="loading-icon" />
+    </div>
   )
 }

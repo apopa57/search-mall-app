@@ -3,13 +3,11 @@ import BaseComponent from 'utils/baseComponent'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import Loader from 'components/common/loader'
-import ItemGrid from 'components/search/itemGrid'
 import ErrorBox from 'components/common/errorBox'
 import Pagination from 'containers/searchPagination'
+import ResultList from 'components/search/result'
 import { selectDisplayType } from 'actions/layout'
 import { selectLayoutItemView } from 'selectors/layout'
-import classnames from 'classnames'
-
 
 import {
   selectSearchData,
@@ -29,41 +27,12 @@ class SearchResult extends BaseComponent {
 
   render() {
     const { data, loading, isValidated, viewType }　= this.props
-    const boxViewClass = classnames({
-      'box-icon': true,
-      'active': viewType === 'box'
-    })
-
-    const listViewClass = classnames({
-      'list-icon': true,
-      'active': viewType === 'list'
-    })
-
-    const listClass = classnames({
-      'columns twelve search-page__results__lists': true,
-      'list-grid': viewType === 'list'
-    })
 
     return(
       <div className="columns ten search-page__results">
-        <div className="columns twelve search-page__results__menubar">
-          <div className="search-page__results__title">
-            <span>Search results</span>
-          </div>
-          <div className="search-page__results__gridicon">
-            <span onClick={this.changeView} className={boxViewClass} id="box"></span>
-            <span onClick={this.changeView} className={listViewClass} id="list"></span>
-          </div>
-        </div>
-        <div className={listClass}>
-          <Loader hide={!loading} />
-          <ErrorBox
-            hide={isValidated}
-            content='Please enter search keyword' />
-          <div className="block-grid">
-            <ItemGrid data={data} hide={loading} displayType={viewType} />
-          </div>
-        </div>
+        <Loader hide={!loading} />
+        <ErrorBox hide={isValidated} content='Please enter search keyword' />
+        <ResultList {...this.props} changeView={this.changeView} />
         <div className="columns twelve search-page__results__pagination">
           <Pagination />
         </div>
